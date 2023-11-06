@@ -1,0 +1,59 @@
+/*  variables  */
+:root {
+    // primary colors
+    --primary: #1ed760;
+    --secondary: #168b3f;
+    --success: #198754;
+    --info: #0d72ea;
+    --warning: #ffa42b;
+    --danger: #f15e6c;
+    --light: #f8f9fa;
+    --dark: var(--gray-bolder);
+  
+  
+    // gray colors
+    --white: #ffffff;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #535353;;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    --gray-bold: #181818; 
+    --gray-bolder: #121212; 
+    --black: #000000;
+}
+  
+
+/* semantic color variables for this project */
+:root {
+    --color-background: var(--white);
+    --color-background-soft: var(--light);
+    --color-background-mute: var(--gray-100);
+  
+    --color-border: var(--light);
+    --color-border-hover: var(--gray-100);
+
+    --color-text: var(--dark);
+}
+
+    
+@media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: var( --black);
+      --color-background-soft: var(--dark);
+      --color-background-mute: var(--gray-700);
+  
+      --color-border: var(--dark);
+      --color-border-hover: var(--gray-700);
+  
+      --color-text: var(--white);
+    }
+}
+  
+  
+
+  
