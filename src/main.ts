@@ -1,7 +1,7 @@
 /* Set up using Vue 3 */
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/index'
 import './assets/main.scss'
 
 /* import the fontawesome core */
