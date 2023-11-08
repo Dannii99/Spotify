@@ -12,12 +12,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
 import { faHouse, faXmark, faMagnifyingGlass, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 
 const Icons = {
     faHouse,
     faXmark,
     faMagnifyingGlass,
-    faBookmark
+    faBookmark,
+    faSpotify
 }
 
 /* add icons to the library */

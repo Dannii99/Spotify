@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './utils/fonts.scss';
 @import './utils/_variables.scss';
+
+
 
 *,
 *::before,
@@ -20,19 +23,7 @@ body {
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+  font-family: 'Proxima-nova-regular';
   font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -43,11 +34,4 @@ body {
     width: 100%;
     height: 100vh;
   }
-}
-
-main {
-  display: flex;
-  width: 100%;
-  flex: 1 1 auto;
-  padding: 8px;
 }

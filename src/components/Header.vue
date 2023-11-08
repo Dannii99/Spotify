@@ -37,7 +37,7 @@
             border-radius: 12px;
             display: flex;
             justify-content: center;
-            align-items: start;
+            align-items: flex-start;
             & .library-icon {
                 padding: 0.5rem;
                 color: var(--gray-500);

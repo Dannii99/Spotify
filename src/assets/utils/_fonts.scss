@@ -1,0 +1,75 @@
+/*  
+ ::v-deep {
+
+     //cyrillic-ext
+     @font-face {
+        font-family: 'proxima-nova-black';
+        font-style: normal;
+        font-weight: bold;
+        font-display: swap;
+        src: url('../../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-black.otf') format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+    
+    
+    
+      @font-face {
+        font-family: 'ProximaNovaBold';
+        font-style: normal;
+        font-weight: bold;
+        font-display: swap;
+        src: url('./../../assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-bold.otf') format('otf');
+      }
+ } */
+
+ ::v-deep {
+
+     //cyrillic-ext
+     @font-face {
+        font-family: 'Proxima-nova-black';
+        font-style: normal;
+        font-weight: bolder;
+        font-display: swap;
+        src: url('./../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-black.otf') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Proxima-nova-bold';
+      font-style: normal;
+      font-weight: bold;
+      font-display: swap;
+      src: url('./../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-bold.otf') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Proxima-nova-semibold';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('./../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-semibold.otf') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Proxima-nova-medium';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('./../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-medium.otf') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Proxima-nova-regular';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('./../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-regular.otf') format('woff2');
+    }
+
+    @font-face {
+        font-family: 'Proxima-nova-light';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url('./../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-light.otf') format('woff2');
+      }
+  }
