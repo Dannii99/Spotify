@@ -1,16 +1,33 @@
 <template>
-    <div class="container-button">
+    <div class="container-button" :class="{ 'animate': animate }">
         <font-awesome-icon :icon="['fab', 'spotify']" class="icon-spotify" />
         <p class="text">Spotify</p>
-        <button @click="auth.authorization()">Login</button>
+        <!-- HTML !-->
+        <button class="btn btn-primary btn-effect rounded-lg text-base font-bold px-1 py-3" role="button" @click="next()"><span>Login</span></button>
     </div>
 </template>
 
 <script setup lang="ts">
     import { AuthService } from "./../services/auth/authService";
     import { ref, onMounted } from 'vue'
+    
+    //animate
+    const animate = ref(false)
 
     const auth = new AuthService();
+
+    const next = () => {
+        animate.value = true;
+        const body = document.body;
+        if (body) {
+        // Modificar estilos como desees
+        body.style.backgroundColor = 'white';
+        body.style.transition = ' transition: all 1.2s ease-in';
+        }
+        setTimeout(() => {
+            auth.authorization()
+        }, 700);
+    }
 
     onMounted(async () => {
         localStorage.clear();
@@ -22,23 +39,16 @@
 
     .container-button {
         width: 100%;
+        max-width: 400px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        & button {
-            width: 300px;
-            padding: 1rem;
-            font-weight: bold;
-            background-color: var(--primary);
-            color: var(--white);
-            border-radius: 8px;
-            border: none;
-            &:hover {
-                background-color: var(--secondary);
-            }
+        opacity: 1;
+        &.animate {
+            opacity: 0;
+            transition: all 1.2s ease-in;
         }
-
         & .icon-spotify {
             font-size: 7rem;
             margin-bottom: 0;
@@ -49,7 +59,9 @@
            /*  font-family: 'Agbalumo'; */
             color: var(--white);
             font-size: 3rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
     }
 </style>
+
+

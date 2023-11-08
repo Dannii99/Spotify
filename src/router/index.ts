@@ -56,6 +56,8 @@ router.beforeEach(async (to, from, next) => {
  // console.log('to: ', to.meta);
  // await auth.getRefreshToken();
   if (to.meta.requiresAuth) {
+    //console.log('getAccessToken: ', auth.getAccessToken() != null);
+    
     // Verifica si el token de acceso está caducado o no existe
     if (auth.getAccessToken() != null) {
       try {
@@ -64,10 +66,10 @@ router.beforeEach(async (to, from, next) => {
         next(); // Continúa con la navegación
       } catch (error) {
         // Maneja el error de refresco de token
-        next({ name: 'home' }); // Redirige a la página de inicio de sesión
+        next('/login' ); // Redirige a la página de inicio de sesión
       }
     } else {
-      next(); // Continúa con la navegación si el token de acceso es válido
+      next('/login' ); // Continúa con la navegación si el token de acceso es válido
     }
   } else {
     next(); // No se requiere autenticación, continúa con la navegación

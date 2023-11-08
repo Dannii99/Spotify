@@ -37,7 +37,7 @@ export class UserService {
     try {
         const response:any = await this.service.get('browse/categories');
         if(response) {
-            console.log('response: ', response);
+            //console.log('response: ', response);
             return response.categories;
         }
     } catch (error) {

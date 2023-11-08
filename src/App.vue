@@ -7,10 +7,23 @@
 
 <script setup lang="ts">
   import Header from './components/Header.vue'
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, watch } from 'vue';
+  import { useRoute } from 'vue-router';
 
   // Acceder a la ruta (URL) actual
-  const currentPath = window.location.pathname;
+  const route = useRoute();
+  const currentPath = ref(window.location.pathname);
+  
+  onMounted( () => {
+    // ...
+  });
+  
+  // Escuchar cambios en la ruta utilizando watch
+  watch(() => route.path, (newPath, oldPath) => {
+    currentPath.value = newPath;
+    //console.log(currentPath.value);
+    
+  });
 
 </script>
 

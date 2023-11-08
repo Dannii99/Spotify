@@ -14,9 +14,10 @@
     const auth = new AuthService();
     
     onMounted(async () => {
-        // const category = await service.getCategories()
+        const category = await service.getCategories()
         const my = await service.getProfileMy()
-        console.log('my: ', my);
+        /* console.log('my: ', my);
+        console.log('category: ', category); */
         
     });
 
