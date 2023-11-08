@@ -1,10 +1,12 @@
 <template>
-    <div class="container-button" :class="{ 'animate': animate }">
-        <font-awesome-icon :icon="['fab', 'spotify']" class="icon-spotify" />
-        <p class="text">Spotify</p>
-        <!-- HTML !-->
-        <button class="btn btn-primary btn-effect rounded-lg text-base font-bold px-1 py-3" role="button" @click="next()"><span>Login</span></button>
-    </div>
+    <main class="container-login">
+        <div class="conten-spot" :class="{ 'animate': animate }">
+            <font-awesome-icon :icon="['fab', 'spotify']" class="icon-spotify" />
+            <p class="text">Spotify</p>
+            <!-- HTML !-->
+            <button class="btn btn-primary btn-effect rounded-lg text-base font-bold px-1 py-3" role="button" @click="next()"><span>Login</span></button>
+        </div>
+    </main>
 </template>
 
 <script setup lang="ts">
@@ -36,30 +38,35 @@
 </script>
 
 <style scoped lang="scss">
-
-    .container-button {
-        width: 100%;
-        max-width: 400px;
+    .container-login {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        opacity: 1;
-        &.animate {
-            opacity: 0;
-            transition: all 1.2s ease-in;
-        }
-        & .icon-spotify {
-            font-size: 7rem;
-            margin-bottom: 0;
-            color: var(--primary);
-        }
-        & .text {
-            font-family: 'Proxima-nova-semibold';
-           /*  font-family: 'Agbalumo'; */
-            color: var(--white);
-            font-size: 3rem;
-            margin-bottom: 2rem;
+        height: 100vh;
+        .conten-spot {
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            &.animate {
+                opacity: 0;
+                transition: all 1.2s ease-in;
+            }
+            & .icon-spotify {
+                font-size: 7rem;
+                margin-bottom: 0;
+                color: var(--primary);
+            }
+            & .text {
+                font-family: 'Proxima-nova-semibold';
+               /*  font-family: 'Agbalumo'; */
+                color: var(--white);
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
         }
     }
 </style>

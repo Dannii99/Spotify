@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { AuthService } from './../services/auth/authService'
 // components
+import Layout from '../views/Layout.vue';
 import Home from '../views/Home.vue';
 import About from '../views/About.vue';
 import Login from '../views/Login.vue';
@@ -10,7 +11,7 @@ import Callback from '../views/Callback.vue';
 // definir auh service
 const auth = new AuthService();
 
-// definir objeto de rutas con sus componentes
+/* // definir objeto de rutas con sus componentes
 const routes = [
   {
     path: '/home',
@@ -42,7 +43,58 @@ const routes = [
       return 'login'
     },
   }
+]; */
+
+// definir objeto de rutas con sus componentes
+const routes = [
+  {
+    path: "/y",
+    component: Layout,
+    name: 'Layout',
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: Home,
+        meta: { requiresAuth: true }, // Agrega la propiedad requiresAuth a meta
+      },
+      {
+        path: '/about',
+        name: 'About',
+        component: About,
+        meta: { requiresAuth: true }, // Agrega la propiedad requiresAuth a meta
+      },
+      {
+        path: '/callback',
+        name: 'Callback',
+        component: Callback,
+      },
+      {
+        path: '/',
+        redirect: (to:any) => {
+          // the function receives the target route as the argument
+          // we return a redirect path/location here.
+          return 'home'
+        },
+      }
+    ],
+  },
+  {
+    path: "/login",
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/',
+    redirect: (to:any) => {
+      // the function receives the target route as the argument
+      // we return a redirect path/location here.
+      return 'login'
+    },
+  }
 ];
+
+
 
 // Cree la instancia del enrutador
 const router = createRouter({
