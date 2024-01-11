@@ -5,7 +5,7 @@ export class AuthService {
     private redirect_uri = import.meta.env.VITE_REDIRECT_URI;
 
 
-    private scope = 'user-read-private user-read-email';
+    private scope = 'user-read-private user-read-email user-library-read';
     private codeVerifier  = this.generateRandomString(64);
    
 

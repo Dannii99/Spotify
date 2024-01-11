@@ -1,0 +1,51 @@
+/* +++++++++++++++++++++++++++++++++++++++++++++++++ //
+    __^__                                      __^__
+   ( ___ )------------------------------------( ___ )
+    | / |                                      | \ |
+    | / |                 COLORS               | \ |
+    |___|                                      |___|
+   (_____)------------------------------------(_____) 
+// ++++++++++++++++++++++++++++++++++++++++++++++++ */
+.primary {
+    color: var(--primary);
+}
+.secondary {
+    color: var(--secondary);
+}
+.danger {
+    color: var(--danger);
+}
+.dark {
+    color: var(--dark);
+}
+.white {
+    color: var(--white);
+}
+
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++ //
+    __^__                                      __^__
+   ( ___ )------------------------------------( ___ )
+    | / |                                      | \ |
+    | / |              BACKGROUND              | \ |
+    |___|                                      |___|
+   (_____)------------------------------------(_____) 
+// ++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+//bg
+.bg-primary {
+    background-color: var(--primary);
+}
+.bg-secondary {
+    background-color: var(--secondary);
+}
+.bg-danger {
+    background-color: var(--danger);
+}
+.bg-dark {
+    background-color: var(--dark);
+}
+.bg-white {
+    background-color: var(--white);
+}

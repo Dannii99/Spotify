@@ -72,4 +72,13 @@
         font-display: swap;
         src: url('./../src/assets/fonts/Proxima-Nova-Extra-Condensed/Demo_Fonts/Fontspring-DEMO-proximanova-light.otf') format('woff2');
       }
+
+      
+    @font-face {
+      font-family: 'circular-medium';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('./../src/assets/fonts/Circular/circular-std-medium-500.ttf') format('woff2');
+    }
   }

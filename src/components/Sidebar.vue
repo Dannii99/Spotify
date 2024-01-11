@@ -46,7 +46,6 @@
                 }
             }
         }
-
         .nav-link {
             color: var(--gray-500);
             &.router-link-active {

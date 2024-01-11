@@ -5,6 +5,7 @@
 @import './utils/fonts.scss';
 @import './utils/_variables.scss';
 @import './utils/buttom.scss';
+@import './utils/colors.scss';
 
 
 
@@ -24,7 +25,7 @@ body {
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
-  font-family: 'Proxima-nova-regular';
+  font-family: 'circular-medium', 'Proxima-nova-regular';
   font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
