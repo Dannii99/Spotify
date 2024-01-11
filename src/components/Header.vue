@@ -40,6 +40,7 @@
         right: 0;
         padding: 0.5rem;
         transform: translate(0px, 0px);
+        z-index: 20;
     }
     .content-user {
         display: flex;

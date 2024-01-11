@@ -1,8 +1,11 @@
 <template>
     <div class="w-full h-full bg-dark px-[20px] pt-[65px] pb-5 rounded-lg">
-        <h1 class="text-[32px] font-bold"> {{ welcome }} </h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2" >
-            <CardMini :album="item" v-for="(item, index) in album.items" :key="index" />
+        <div class="banner absolute z-10 top-0 left-0 rounded-t-lg" />
+        <div class="relative z-20">
+            <h1 class="text-[32px] font-bold"> {{ welcome }} </h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2" >
+                <CardMini :album="item" v-for="(item, index) in album.items" :key="index" />
+            </div>
         </div>
     </div>
 </template>
@@ -36,8 +39,10 @@
 
     onMounted(async () => {
         // const category = await service.getCategories()
+        album.value = await service.getAlbum(0, 6);
+        console.log('ALBUM: ', album.value);
         setTimeout(async () => {
-            album.value = await service.getAlbum(0, 6);
+            
         },500);
         
         welcome.value = getGreeting();
@@ -49,5 +54,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .banner {
+        height: 332px;
+        width: 100%;
+        background-color: #535353;
+        background-image: linear-gradient(#00000099 0,#121212 100%),var(--background-noise);
+    }
 </style>
