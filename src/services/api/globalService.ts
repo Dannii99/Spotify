@@ -14,7 +14,8 @@ export class GlobalService {
     
         myHeaders.append("Authorization", "Bearer " + accessToken);
         myHeaders.append("Content-Type", "application/json");
-        // myHeaders.append("Access-Control-Allow-Origin", "*");
+        /* myHeaders.append("Access-Control-Allow-Origin", "*"); */
+       /*  myHeaders.append('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With'); */
     
         const requestOptions: object = {
           method: 'POST',

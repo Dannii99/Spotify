@@ -8,13 +8,14 @@
   import { ref, onMounted } from 'vue'
   import { AuthService } from './../services/auth/authService'
   // Importa el enrutador de Vue Router
-  import { useRouter } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
+
+  // Obtiene una referencia al enrutador
+  const router:any = useRouter(); 
   
   // llamar servicios
    const auth = new AuthService();
 
-  // Obtiene una referencia al enrutador
-   const router:any = useRouter(); 
 
   // Accede a la cadena de consulta (query string) de la URL
   const queryString = window.location.search;

@@ -1,3 +1,5 @@
+import router from "@/router";
+
 export class AuthService {
 
     private client_id = import.meta.env.VITE_CLIENT_ID;
@@ -5,13 +7,11 @@ export class AuthService {
     private redirect_uri = import.meta.env.VITE_REDIRECT_URI;
 
 
-    private scope = 'user-read-private user-read-email user-library-read';
+    private scope = 'user-read-private user-read-email user-library-read playlist-read-private ugc-image-upload user-modify-playback-state app-remote-control';
     private codeVerifier  = this.generateRandomString(64);
    
 
-    constructor() {
-        
-    }
+    constructor() { }
 
     getClientId() {
         return this.client_id
@@ -76,21 +76,21 @@ export class AuthService {
                 const body = await fetch("https://accounts.spotify.com/api/token", payload);
                 const response = await body.json();
                 if (response) {
-                    // console.log('response: ', response.access_token);
+                    //console.log('response: ', response);
                     localStorage.setItem('access_token', response.access_token);
                     localStorage.setItem('refresh_token', response.refresh_token);
                     this.getAccessToken()
                     resolve()
                 }
             } catch (error) {
-                console.error(error)
+                console.error('ERROR: ', error)
                 reject(error)
             }
         })
     }
 
     // refrescar access token
-    async getRefreshToken() {
+    getRefreshToken = async () => {
         try {
              // refresh token that has been previously stored
             const refreshToken: any = localStorage.getItem('refresh_token');
@@ -108,17 +108,21 @@ export class AuthService {
                 }),
             }
             const body:any = await fetch(url, payload);
-            const response:any = await body.json();
-            if (response) {
-                // console.log('response refress: ', response);
-                localStorage.setItem('access_token', response.access_token);
-                localStorage.setItem('refresh_token', response.refresh_token);
-                
+            //console.log('body: ', await body);
+            if (body.status >= 200 && body.status < 400 ) {
+                const response:any = await body.json();
+                if (response) {
+                    //console.log('response refress: ', response);
+                    localStorage.setItem('access_token', response.access_token);
+                    localStorage.setItem('refresh_token', response.refresh_token);
+                    
+                }
+            } else if (body.status == 400) {
+                localStorage.clear();
+               router.push('/login')
             }
-            
-        
         } catch (error) {
-            console.error(error)
+            console.error('ERROR: ', error)
         }
        
     }

@@ -4,7 +4,7 @@
             <div class="navegate navegate-back me-2"><font-awesome-icon :icon="['fas', 'chevron-left']"/></div>
             <div class="navegate navegate-next"><font-awesome-icon :icon="['fas', 'chevron-right']"/></div>
         </div>
-        <div class="content-user" v-if="user">
+        <div class="content-user" v-if="user" v-on:click="close">
            <p class="white text-[18px] mb-0" >{{ user.value.display_name }}</p>
            <div class="user ms-3" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }" v-if="user.value.images"></div>
         </div>
@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+    import router from '@/router';
     import { ref, onMounted, watch, type Ref, computed, watchEffect } from 'vue';
 
     const props = defineProps<{
@@ -23,6 +24,11 @@
     watchEffect(() => {
         user.value = computed(() => props.user);
     })
+
+    const close = () => {
+        localStorage.clear();
+        router.push('/login')
+    }
 
     onMounted(() => {
     });
