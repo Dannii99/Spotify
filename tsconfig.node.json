@@ -8,9 +8,17 @@
     "playwright.config.*"
   ],
   "compilerOptions": {
+    "target": "esnext",
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "types": ["node"]
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "types": ["node", "vite/client", "@types/node", "@types/vue"],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "lib": ["esnext", "dom"]
   }
 }
