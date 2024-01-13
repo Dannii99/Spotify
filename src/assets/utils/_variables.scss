@@ -18,12 +18,12 @@
     --gray-300: #dee2e6;
     --gray-400: #ced4da;
     --gray-500: #b3b3b3;
-    --gray-600: #6c757d;
+    --gray-600: #a7a7a7;
     --gray-700: #535353;;
     --gray-800: #343a40;
     --gray-900: #212529;
     --gray-bold: #181818; 
-    --gray-bolder: #121212; 
+    --gray-bolder: #121212;
     --black: #000000;
 }
   
@@ -56,7 +56,8 @@
   
 
 :root {
-    --background-noise: url('src/assets/img/bg-transparente.svg')
+    --background-noise: url('src/assets/img/bg-transparente.svg');
+    --column-count: 4;
 }
 
   

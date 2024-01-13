@@ -8,13 +8,60 @@
 @import './utils/colors.scss';
 
 
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+}
+
+*, *:hover {
+  &::-webkit-scrollbar {
+    width: 0px;     // Tamaño del scroll en vertical
+    height: 8px;    // Tamaño del scroll en horizontal
+    //display: none;  // Ocultar scroll
+    transition: all 1s ease;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0px;
+    opacity: 0;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    //background: hsla(0,0%,100%,.3);
+    background: hsla(0,0%,100%,.3);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: hsla(0,0%,100%,.3);
+    opacity: 1;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track:hover {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track:active {
+    background: transparent;
+  }
+}
+/* Estilos cuando el cursor está sobre el contenedor que hace scroll */
+.scroll-custom:hover {
+  transition: all 1s ease;
+  &::-webkit-scrollbar-thumb {
+    background: hsla(0,0%,100%,.3);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    display: block;
+    opacity: 1;
+  }
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; 
+  }
 }
 
 body {

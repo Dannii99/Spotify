@@ -107,6 +107,9 @@
         background-color: hsl(0deg 0% 100% / 7%);
         display: flex;
         overflow: hidden;
+        &:hover {
+            background: hsla(0,0%,100%,.2);
+        }
         & .icon {
             width: 48px;
             height: 48px;

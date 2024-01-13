@@ -48,7 +48,21 @@ export class UserService {
 
   async getAlbum(offset?:number, limit?:number) {
     try {
-        const response:any = await this.service.get((!offset && !limit ? `me/albums` : `me/albums?offset=${offset}&limit=${limit}`) );
+        const response:any = await this.service.get((!offset && !limit) ? `me/albums` : `me/albums?offset=${offset}&limit=${limit}` );
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  async getPlayListPopular(offset?:number, limit?:number, country?:string) {
+    try {
+        const response:any = await this.service.get(((!!offset || offset == 0)  && !!limit && !!country) ? `browse/featured-playlists?country=${country}&offset=${offset}&limit=${limit}` 
+        : (((!!offset || offset == 0) && !!limit) && !country) ? `browse/featured-playlists?offset=${offset}&limit=${limit}` 
+        : ((!offset && !limit) && !!country) ? `browse/featured-playlists?country=${country}` : `browse/featured-playlists` );
         if(response) {
             //console.log('response: ', response);
             return response;
