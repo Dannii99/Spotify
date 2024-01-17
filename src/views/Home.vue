@@ -6,10 +6,31 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 mb-8" >
                 <CardMini :album="item" :hoverColor="UpdateHoverColor" v-for="(item, index) in album.items" :key="index" /><!--  @hover-cambio="manejarHover" -->
             </div>
-            <section class="popularPlaylists">
-                <h2 class="text-[24px] font-bold white">En tendencia</h2>
-                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 pt-2 mb-8" >
+            <section class="recentPlaylits">
+                <div class="head-playlits">
+                    <h2 class="text-[24px] font-bold white">Escuchado recientemente</h2>
+                    <a href="#" class="link">Mostrar todos</a>
+                </div>
+                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                    <Card :playList="item" v-for="(item, index) in recent?.items" :key="index" />
+                </div>
+            </section>
+            <section class="popularPlaylits">
+                <div class="head-playlits">
+                    <h2 class="text-[24px] font-bold white">En tendencia</h2>
+                    <a href="#" class="link">Mostrar todos</a>
+                </div>
+                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in popular?.playlists?.items" :key="index" />
+                </div>
+            </section>
+            <section class="popularPlaylits">
+                <div class="head-playlits">
+                    <h2 class="text-[24px] font-bold white">Novedades para ti</h2>
+                    <a href="#" class="link">Mostrar todos</a>
+                </div>
+                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                    <Card :playList="item" v-for="(item, index) in news?.albums?.items" :key="index" />
                 </div>
             </section>
         </div>
@@ -34,6 +55,8 @@
     //variables almacenamiento
     let album: Ref<any> = ref({});
     let popular: Ref<any> = ref({});
+    let recent: Ref<any> = ref({});
+    let news: Ref<any> = ref({});
 
     // valirable para el saludo al home
     let welcome: Ref<string> = ref('');
@@ -63,9 +86,9 @@
     // screem desktop
     const isDesktop: Ref<boolean> = ref(false);
     
-        // Media Query Screem
-        const checkMediaQueries = async () => {
-        console.log('columnActual: ', columnActual.value);
+    // Media Query Screem
+    const checkMediaQueries = async () => {
+        //console.log('columnActual: ', columnActual.value);
         
         const mobileQuery = window.matchMedia('(max-width: 768px)');
         const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
@@ -87,12 +110,16 @@
             columnNew.value = parseInt(columnActual.value) + 1;
             root.style.setProperty('--column-count', columnNew.toString());
         } else if (isDesktop.value) {
-            columnNew.value = parseInt(columnActual.value) + 2;
+            columnNew.value = parseInt(columnActual.value) + 3;
             root.style.setProperty('--column-count', columnNew.toString());
         }
         //console.log('columnNew: ', columnNew.value);
         // optener playlist polulares
         popular.value = await service.getPlayListPopular(0, parseInt(columnNew.value), 'CO');
+        recent.value = await service.getPlayListRecent(service?.IdUser, 0, parseInt(columnNew.value));
+        news.value = await service.getPlayListNews('CO', 0, parseInt(columnNew.value));
+        //console.log('news: ', news.value);
+        
     };
 
 
@@ -117,11 +144,9 @@
         // optener ultimos albunes escuchados del usuario
         album.value = await service.getAlbum(0, 6);
        
-        setTimeout(() => {
-            // resize screem
-            checkMediaQueries();
-            window.addEventListener('resize', checkMediaQueries); 
-        }, 1000);
+        // resize screem
+        checkMediaQueries();
+        window.addEventListener('resize', checkMediaQueries); 
 
         // variable welcome define
         welcome.value = getGreeting();
@@ -148,5 +173,21 @@
         background-image: linear-gradient(#00000099 0,#121212 100%),var(--background-noise);
         -webkit-transition: background 1s ease;
         transition: background 1s ease;
+    }
+
+    .head-playlits {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & .link {
+            color: var(--gray-500);
+            white-space: nowrap;
+            font-size: 14px;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+                color: var(--gray-600);
+            }
+        }
     }
 </style>

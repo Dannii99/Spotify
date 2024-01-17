@@ -24,9 +24,7 @@
   let perfil: Ref<any> = ref({});
   
   onMounted(async () => {
-    setTimeout(async () => {
       perfil.value = await service.getProfileMy();
-    },500);
   });
   
   // Escuchar cambios en la ruta utilizando watch

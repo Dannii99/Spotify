@@ -48,7 +48,12 @@ const routes = [
 // definir objeto de rutas con sus componentes
 const routes = [
   {
-    path: "/y",
+    path: '/callback',
+    component: Callback,
+    name: 'Callback',
+  },
+  {
+    path: "/",
     component: Layout,
     name: 'Layout',
     children: [
@@ -63,11 +68,6 @@ const routes = [
         name: 'About',
         component: About,
         meta: { requiresAuth: true }, // Agrega la propiedad requiresAuth a meta
-      },
-      {
-        path: '/callback',
-        name: 'Callback',
-        component: Callback,
       },
       {
         path: '/',

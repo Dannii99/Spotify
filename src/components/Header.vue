@@ -6,7 +6,10 @@
         </div>
         <div class="content-user" v-if="user" v-on:click="close">
            <p class="white text-[18px] mb-0" >{{ user.value.display_name }}</p>
-           <div class="user ms-3" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }" v-if="user.value.images"></div>
+           <div class="flex justify-center items-center user ms-3" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }"  v-if="user.value?.images" />
+           <div class="flex justify-center items-center user ms-3" v-if="user.value?.images?.length == 0 ? true : false" >
+                <font-awesome-icon :icon="['fas', 'user']" class="text-[14px] white" /> 
+            </div>
         </div>
     </header>
 </template>
@@ -23,6 +26,10 @@
         
     watchEffect(() => {
         user.value = computed(() => props.user);
+        if (user.value.value.images) {
+                console.log('s: ', user.value.value.images.length);
+                
+        }
     })
 
     const close = () => {

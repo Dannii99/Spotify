@@ -103,7 +103,7 @@
     .card {
         width: 100%;
         border-radius: 4px;
-        height: 48px;
+        height: 70px;
         background-color: hsl(0deg 0% 100% / 7%);
         display: flex;
         overflow: hidden;
@@ -111,8 +111,8 @@
             background: hsla(0,0%,100%,.2);
         }
         & .icon {
-            width: 48px;
-            height: 48px;
+            width: 70px;
+            height: 70px;
             background-color: var(--black);
             background-position: center;
         }
@@ -122,9 +122,15 @@
             align-items: center;
             padding: 0.5rem;
             flex: 1 0 auto;
-            & text {
+            width: calc(100% - 70px);
+            & .text {
                 font-size: 0.875rem;
                 margin-bottom: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                word-wrap: break-word;
+                width: 100%;
             }
         }
     }

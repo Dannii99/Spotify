@@ -1,11 +1,13 @@
 <template>
     <div class="card">
         <div class="imagen-content mb-3">
-            <img aria-hidden="false" draggable="false" loading="lazy" :src="popular.value.images[0].url" data-testid="card-image" alt="" class="img-card" v-if="popular.value.images">
+            <img aria-hidden="false" draggable="false" loading="lazy" :src="lista.value.images[0].url" data-testid="card-image" alt="" class="img-card" v-if="lista.value.images">
         </div>
         <div class="text-content">
-            <h4 class="text-[16px] font-bold white pb-1">{{ popular.value.name }}</h4>
-            <p class="text-[14px] gray-600">{{ popular.value.description }}</p>
+            <h4 class="text-[16px] font-bold white pb-1 line-clamp-title">{{ lista.value.name }}</h4>
+            <p class="text-[14px] gray-600 line-clamp-text"  v-if="lista.value.description">{{ lista.value.description }}</p>
+            <p class="text-[14px] gray-600 line-clamp-text" v-if="(!lista.value.description && lista.value.tracks)">{{ lista.value.tracks.total }} {{lista.value.tracks.total > 0 ? 'Canciones' : 'Cancion' }} </p>
+            <p class="text-[14px] gray-600 line-clamp-text" v-if="(!lista.value.description && lista.value.total_tracks)">{{ lista.value.total_tracks }} {{lista.value.total_tracks > 0 ? 'Canciones' : 'Cancion' }}</p>
         </div>
     </div>
 </template>
@@ -19,11 +21,11 @@
     }>()
 
     // variable almacenamiento
-    let popular: Ref<any | null> = ref(null);
+    let lista: Ref<any | null> = ref(null);
   
     watchEffect(() => {
-        popular.value = computed(() => props.playList);
-       /*  console.log('popular: ',popular.value.value.images); */
+        lista.value = computed(() => props.playList);
+        // console.log('playList: ',lista.value.value);
     });
 
     onMounted(() => {
@@ -67,6 +69,18 @@
         }
         & .text-content {
             min-height: 62px;
+            & .line-clamp-title {
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            & .line-clamp-text {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
         }
     }
 </style>

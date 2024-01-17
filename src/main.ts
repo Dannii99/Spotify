@@ -11,8 +11,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faHouse, faXmark, faMagnifyingGlass, faBookmark, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faXmark, faMagnifyingGlass, faBookmark, faChevronLeft, faChevronRight, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
+
 
 const Icons = {
     faHouse,
@@ -21,7 +22,8 @@ const Icons = {
     faBookmark,
     faSpotify,
     faChevronLeft,
-    faChevronRight
+    faChevronRight,
+    faUser
 }
 
 /* add icons to the library */

@@ -6,15 +6,18 @@ export class UserService {
   private service = new GlobalService();
   private client_id = import.meta.env.VITE_CLIENT_ID;
 
-  constructor() {
+  public IdUser:string = '';
 
+  constructor() {
+    this.getProfileMy().then((e) => {
+      this.IdUser = e.id;
+    })
   }
 
   async getProfileMy() {
     try {
       const response:any = await this.service.get('me');
       if(response) {
-          //console.log('response: ', response);
           return response;
       }
     } catch (error) {
@@ -63,6 +66,45 @@ export class UserService {
         const response:any = await this.service.get(((!!offset || offset == 0)  && !!limit && !!country) ? `browse/featured-playlists?country=${country}&offset=${offset}&limit=${limit}` 
         : (((!!offset || offset == 0) && !!limit) && !country) ? `browse/featured-playlists?offset=${offset}&limit=${limit}` 
         : ((!offset && !limit) && !!country) ? `browse/featured-playlists?country=${country}` : `browse/featured-playlists` );
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  async getPlayListRecent(user_id:string, offset?:number, limit?:number, ) {
+    try {
+        const response:any = await this.service.get(((!!offset || offset == 0)  && !!limit && !!!!user_id) ? `users/${user_id}/playlists?offset=${offset}&limit=${limit}` 
+        : ((!offset && !limit) && !!user_id) ? `users/${user_id}/playlists` : `users/${user_id}/playlists` );
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+  
+  async getPlayListNews(country?:string, offset?:number, limit?:number, ) {
+    try {
+        const response:any = await this.service.get(((!!offset || offset == 0)  && !!limit && !!country) ? `browse/new-releases?country=${country}&limit=${limit}&offset=${offset}` 
+        : ((!offset && !limit) && !!country) ? `browse/new-releases?country=${country}` : ((!!offset && !!limit) && !country) ? `browse/new-releases?limit=${limit}&offset=${offset}` 
+        : `browse/new-releases` );
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  async getMyArtists(offset?:number, limit?:number, ) {
+    try {
+        const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/top/artists?limit=${limit}&offset=${offset}` : `me/top/artists`);
         if(response) {
             //console.log('response: ', response);
             return response;

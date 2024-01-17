@@ -13,9 +13,11 @@
             <div class="library">
                 <font-awesome-icon :icon="['fas', 'bookmark']" class="library-icon text-xl" />
             </div>
-            <div class="group scroll-custom" v-if="album">
-                <div class="grid grid-cols-1 gap-3">
-                    <div class="icon" :style="{ backgroundImage: 'url(' + item.album.images[2].url + ')' }" v-for="(item, index) in album.items" :key="index"/>
+            <div class="group" v-if="album">
+                <div class="list-group scroll-custom">
+                    <div class="grid grid-cols-1 gap-3"> <!-- :style="{ backgroundImage: 'url(' +  item?.album?.images[2].url + ')'}"  v-for="(item, index) in tabs" :key="index" -->
+                        <div class="icon" :class="{'artist': (!item?.album) }" :style="{ backgroundImage: 'url(' +  ((item?.album) ?  item?.album?.images[2].url : item?.images[2].url) + ')'}"  v-for="(item, index) in tabs" :key="index" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,10 +34,17 @@
 
     // variable almacenamiento
     let album: Ref<any | null> = ref(null);
+    let artist: Ref<any | null> = ref(null);
+    let tabs: Ref<Array<any>> = ref([]);
 
     onMounted(async () => {
         album.value = await service.getAlbum();
-       /*  console.log('album: ',  album.value); */
+        artist.value = await service.getMyArtists();
+        /* console.log('album: ',  album.value);
+        console.log('artist: ',  artist.value); */
+        tabs.value.push(...album.value.items, ...artist.value.items)
+        console.log('tabs: ', tabs.value);
+        
     });
 
 </script>
@@ -75,10 +84,14 @@
 
             & .group {
                 width: 100%;
-                padding: 8px 12px;
-                overflow-y: auto;
-                overflow-x: hidden;
+                padding: 8px 0 20px;
+                overflow: hidden;
+                display: flex;
                 flex: 1 0 calc(100vh - 200px);
+                & .list-group {
+                    overflow:  hidden auto;
+                    padding: 0 12px;
+                }
             }
 
             .icon {
@@ -86,6 +99,10 @@
                 height: 48px;
                 background-color: var(--black);
                 background-position: center;
+                background-size: cover;
+                &.artist {
+                    border-radius: 100px;
+                }
             }
         }
         .nav-link {

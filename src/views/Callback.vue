@@ -33,7 +33,7 @@
     await auth.getToken(code);
     setTimeout(() => {
       router.push('/home')
-    }, 100);
+    }, 500);
     
   });
 </script>
