@@ -1,13 +1,14 @@
 <template>
     <div class="card">
-        <div class="imagen-content mb-3">
-            <img aria-hidden="false" draggable="false" loading="lazy" :src="lista.value.images[0].url" data-testid="card-image" alt="" class="img-card" v-if="lista.value.images">
+        <div class="imagen-content mb-3" :class="{'artist': lista?.value?.type == 'artist'}">
+            <img aria-hidden="false" draggable="false" loading="lazy" :src="lista?.value?.images[0]?.url" data-testid="card-image" alt="" class="img-card"  v-if="lista.value.images">
         </div>
         <div class="text-content">
             <h4 class="text-[16px] font-bold white pb-1 line-clamp-title">{{ lista.value.name }}</h4>
             <p class="text-[14px] gray-600 line-clamp-text"  v-if="lista.value.description">{{ lista.value.description }}</p>
             <p class="text-[14px] gray-600 line-clamp-text" v-if="(!lista.value.description && lista.value.tracks)">{{ lista.value.tracks.total }} {{lista.value.tracks.total > 0 ? 'Canciones' : 'Cancion' }} </p>
             <p class="text-[14px] gray-600 line-clamp-text" v-if="(!lista.value.description && lista.value.total_tracks)">{{ lista.value.total_tracks }} {{lista.value.total_tracks > 0 ? 'Canciones' : 'Cancion' }}</p>
+            <p class="text-[14px] gray-600 line-clamp-text" v-if="(lista?.value?.type == 'artist')">Artista</p>
         </div>
     </div>
 </template>
@@ -59,6 +60,9 @@
             position: relative;
             width: 100%;
             overflow: hidden;
+            &.artist {
+                border-radius: 100px;
+            }
             & .img-card {
                 width: 100%;
                 height: 100%;

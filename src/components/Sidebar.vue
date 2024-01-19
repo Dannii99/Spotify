@@ -4,19 +4,19 @@
             <router-link to="/home" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'house']" class="text-xl"/>
             </router-link> 
-            <router-link to="/about" class="nav-link">
+            <router-link to="/category" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="text-xl" />
             </router-link>
         </div>
 
         <div class="library-link">
             <div class="library">
-                <font-awesome-icon :icon="['fas', 'bookmark']" class="library-icon text-xl" />
+                <font-awesome-icon :icon="['fas', 'bookmark']" class="library-icon text-xl cursor-pointer" />
             </div>
             <div class="group" v-if="album">
                 <div class="list-group scroll-custom">
                     <div class="grid grid-cols-1 gap-3"> <!-- :style="{ backgroundImage: 'url(' +  item?.album?.images[2].url + ')'}"  v-for="(item, index) in tabs" :key="index" -->
-                        <div class="icon" :class="{'artist': (!item?.album) }" :style="{ backgroundImage: 'url(' +  ((item?.album) ?  item?.album?.images[2].url : item?.images[2].url) + ')'}"  v-for="(item, index) in tabs" :key="index" />
+                        <div class="icon cursor-pointer" :class="{'artist': (item?.type == 'artist') }" :style="{ backgroundImage: 'url(' +  ((item?.album) ?  item?.album?.images[0]?.url : item?.images[0]?.url) + ')'}"  v-for="(item, index) in tabs" :key="index" />
                     </div>
                 </div>
             </div>
@@ -35,16 +35,23 @@
     // variable almacenamiento
     let album: Ref<any | null> = ref(null);
     let artist: Ref<any | null> = ref(null);
+    let playLists: Ref<any | null> = ref(null);
     let tabs: Ref<Array<any>> = ref([]);
 
     onMounted(async () => {
         album.value = await service.getAlbum();
         artist.value = await service.getMyArtists();
-        /* console.log('album: ',  album.value);
-        console.log('artist: ',  artist.value); */
-        tabs.value.push(...album.value.items, ...artist.value.items)
-        console.log('tabs: ', tabs.value);
-        
+        playLists.value = await service.getMyPlaylistsTop();
+
+        tabs.value.push(...album?.value?.items, ...artist?.value?.items, ...playLists?.value?.items)
+
+        // Organizar ascendentemente
+        const sort = tabs.value.sort((a, b) => {
+            const visitasA = a?.popularity || (a?.album && a?.album?.popularity) || (a?.tracks && a?.tracks?.total) || 0;
+            const visitasB = b?.popularity || (b?.album && b?.album?.popularity) || (b?.tracks && b?.tracks?.total) || 0;
+            return visitasB - visitasA;
+        });
+        //console.log('sort: ', sort);
     });
 
 </script>

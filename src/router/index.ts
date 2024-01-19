@@ -4,7 +4,7 @@ import { AuthService } from './../services/auth/authService'
 // components
 import Layout from '../views/Layout.vue';
 import Home from '../views/Home.vue';
-import About from '../views/About.vue';
+import Category from '../views/Category.vue';
 import Login from '../views/Login.vue';
 import Callback from '../views/Callback.vue';
 
@@ -64,9 +64,9 @@ const routes = [
         meta: { requiresAuth: true }, // Agrega la propiedad requiresAuth a meta
       },
       {
-        path: '/about',
-        name: 'About',
-        component: About,
+        path: '/category',
+        name: 'Category',
+        component: Category,
         meta: { requiresAuth: true }, // Agrega la propiedad requiresAuth a meta
       },
       {

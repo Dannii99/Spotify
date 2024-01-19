@@ -33,6 +33,15 @@
                     <Card :playList="item" v-for="(item, index) in news?.albums?.items" :key="index" />
                 </div>
             </section>
+            <section class="popularPlaylits">
+                <div class="head-playlits">
+                    <h2 class="text-[24px] font-bold white">Tus Artistas</h2>
+                    <a href="#" class="link">Mostrar todos</a>
+                </div>
+                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                    <Card :playList="item" v-for="(item, index) in  artist?.items" :key="index" />
+                </div>
+            </section>
         </div>
     </main>
 </template>
@@ -41,7 +50,8 @@
     import { ref, onMounted, type Ref, inject, computed, onBeforeUpdate, provide, watchEffect, type ComputedRef, watch, nextTick, onBeforeUnmount } from 'vue'
     import { UserService } from '../services/api/userService'
     import { AuthService } from '../services/auth/authService'
-    import { useRoute, useRouter } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router'
+    import like from '@/assets/img/liked-songs-640.png'
     import CardMini from '@/components/CardMini.vue'
     import Card from '@/components/Card.vue'
 
@@ -55,8 +65,10 @@
     //variables almacenamiento
     let album: Ref<any> = ref({});
     let popular: Ref<any> = ref({});
+    let tracks: Ref<any> = ref({});
     let recent: Ref<any> = ref({});
     let news: Ref<any> = ref({});
+    let artist: Ref<any | null> = ref(null);
 
     // valirable para el saludo al home
     let welcome: Ref<string> = ref('');
@@ -74,7 +86,7 @@
     const root = document.documentElement;
 
     // Acceder a la variable del root
-    const columnActual: Ref<any> = ref(getComputedStyle(root).getPropertyValue('--column-count')); 
+    const columnActual: Ref<any> = ref('4'); 
     const columnNew: Ref<any> = ref('');
 
     // screem Movil
@@ -88,8 +100,7 @@
     
     // Media Query Screem
     const checkMediaQueries = async () => {
-        //console.log('columnActual: ', columnActual.value);
-        
+        //columnActual.value = getComputedStyle(root).getPropertyValue('--column-count');
         const mobileQuery = window.matchMedia('(max-width: 768px)');
         const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
         const laptopQuery = window.matchMedia('(min-width: 1024px) and (max-width: 1280px)');
@@ -103,15 +114,19 @@
         if (isMobile.value) {
             columnNew.value = parseInt(columnActual.value) - 1;
             root.style.setProperty('--column-count', columnNew.toString());
+            artist.value = await service.getMyArtists(0, 9);
         } else if(isTablet.value) {
             columnNew.value = parseInt(columnActual.value);
             root.style.setProperty('--column-count', columnNew.toString());
+            artist.value = await service.getMyArtists(0, 12);
         } else if (isLaptop.value) {
             columnNew.value = parseInt(columnActual.value) + 1;
             root.style.setProperty('--column-count', columnNew.toString());
+            artist.value = await service.getMyArtists(0, 15);
         } else if (isDesktop.value) {
             columnNew.value = parseInt(columnActual.value) + 3;
             root.style.setProperty('--column-count', columnNew.toString());
+            artist.value = await service.getMyArtists();
         }
         //console.log('columnNew: ', columnNew.value);
         // optener playlist polulares
@@ -121,7 +136,6 @@
         //console.log('news: ', news.value);
         
     };
-
 
     // saludo
     const getGreeting = (): string => {
@@ -135,15 +149,21 @@
     }
 
     onBeforeUnmount(() => {
-        window.removeEventListener('resize', checkMediaQueries);
+        checkMediaQueries();
     });
     
     onMounted(async () => {
         // const category = await service.getCategories()
         await nextTick();
         // optener ultimos albunes escuchados del usuario
-        album.value = await service.getAlbum(0, 6);
-       
+        tracks.value = await service.getMyTracks(0, 1);
+        album.value = await service.getAlbum(0, 5);
+        album.value.items.push({album: {'total_tracks': tracks.value.total, 'album_type': 'favorite', 'name': 'Canciones que te gustan', 'images': [{'url': like}]}});
+        album.value.items.sort((a:any, b:any) => {
+            return  b.album.total_tracks -  a.album.total_tracks;
+        });
+        console.log('album: ', album.value);
+        console.log('artist: ', artist.value);
         // resize screem
         checkMediaQueries();
         window.addEventListener('resize', checkMediaQueries); 

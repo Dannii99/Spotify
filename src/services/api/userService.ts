@@ -113,5 +113,40 @@ export class UserService {
         console.error(error)
     }
   }
+
+  async getMyTracks(offset?:number, limit?:number, ) {
+    try {
+        const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/top/tracks?limit=${limit}&offset=${offset}` : `me/top/tracks`);
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+  async getMyPlaylists(offset?:number, limit?:number, ) {
+    try {
+        const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/tracks?limit=${limit}&offset=${offset}` : `me/tracks`);
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  async getMyPlaylistsTop(offset?:number, limit?:number, ) {
+    try {
+        const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/playlists?limit=${limit}&offset=${offset}` : `me/playlists`);
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
     
 }

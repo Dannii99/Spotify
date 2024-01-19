@@ -1,7 +1,7 @@
 <template>
     <div class="card cursor-pointer"  @mouseover="handleMouseOver" @mouseleave="ResetMouseOver" >
         <!-- <div class="icon" :style="{ backgroundImage: 'url(' + album.value.album.images[2].url + ')' }" v-if="album.value"/> -->
-        <img ref="image" :src="album.value.album.images[2].url" alt="Sample Image" crossorigin="anonymous" class="icon"   @load="handleLoad" />
+        <img ref="image" :src="album.value.album.images[0].url" alt="Sample Image" crossorigin="anonymous" class="icon"   @load="handleLoad" />
         <div class="content">
             <p class="text white">{{ album.value.album.name }}</p>
         </div>
