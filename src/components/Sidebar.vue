@@ -86,7 +86,7 @@
                     padding: 0.5rem;
                     color: var(--gray-500);
                     &:hover,:focus {
-                        color: var(--white);
+                        color: var(--color-text);
                     }
                 }
             }
@@ -117,7 +117,7 @@
         .nav-link {
             color: var(--gray-500);
             &.router-link-active {
-                color: var(--white);
+                color: var(--color-text);
             }
         }
     }

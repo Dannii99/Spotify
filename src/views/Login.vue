@@ -63,7 +63,7 @@
             & .text {
                 font-family: 'Proxima-nova-semibold';
                /*  font-family: 'Agbalumo'; */
-                color: var(--white);
+                color: var(--color-text);
                 font-size: 3rem;
                 margin-bottom: 2rem;
             }

@@ -1,14 +1,18 @@
-<template>
+<template >
     <div class="card">
         <div class="imagen-content mb-3" :class="{'artist': lista?.value?.type == 'artist'}">
-            <img aria-hidden="false" draggable="false" loading="lazy" :src="lista?.value?.images[0]?.url" data-testid="card-image" alt="" class="img-card"  v-if="lista.value.images">
+            <img v-if="lista?.value?.images" aria-hidden="false" draggable="false" loading="lazy" :src="lista?.value?.images[0]?.url" data-testid="card-image" alt="image" class="img-card">
+            <img v-if="lista?.value?.episode?.images" aria-hidden="false" draggable="false" loading="lazy" :src="lista.value.episode.images[0]?.url" data-testid="card-image" alt="image" class="img-card">
+            <img v-if="lista?.value?.icons" aria-hidden="false" draggable="false" loading="lazy" :src="lista?.value?.icons[0]?.url" data-testid="card-image" alt="image" class="img-card">
         </div>
         <div class="text-content">
-            <h4 class="text-[16px] font-bold white pb-1 line-clamp-title">{{ lista.value.name }}</h4>
+            <h4 class="text-[16px] font-bold white pb-1 line-clamp-title">{{ !!lista.value.name ? lista.value.name : lista.value.episode.name }}</h4>
             <p class="text-[14px] gray-600 line-clamp-text"  v-if="lista.value.description">{{ lista.value.description }}</p>
             <p class="text-[14px] gray-600 line-clamp-text" v-if="(!lista.value.description && lista.value.tracks)">{{ lista.value.tracks.total }} {{lista.value.tracks.total > 0 ? 'Canciones' : 'Cancion' }} </p>
             <p class="text-[14px] gray-600 line-clamp-text" v-if="(!lista.value.description && lista.value.total_tracks)">{{ lista.value.total_tracks }} {{lista.value.total_tracks > 0 ? 'Canciones' : 'Cancion' }}</p>
             <p class="text-[14px] gray-600 line-clamp-text" v-if="(lista?.value?.type == 'artist')">Artista</p>
+            <p class="text-[14px] gray-600 line-clamp-text" v-if="(lista?.value?.type == 'category')">Categoria</p>
+            <p class="text-[14px] gray-600 line-clamp-text" v-if="(lista.value.episode?.type == 'episode')">{{ lista.value.episode?.show.name }}</p>
         </div>
     </div>
 </template>
@@ -23,10 +27,16 @@
 
     // variable almacenamiento
     let lista: Ref<any | null> = ref(null);
+    let episodes: Ref<any | null> = ref(null);
   
     watchEffect(() => {
         lista.value = computed(() => props.playList);
-        // console.log('playList: ',lista.value.value);
+        //console.log('playListss=> ', lista.value.value.episode.images[0]?.url );
+        
+        /* if (props.playList.episode) {
+            episodes.value = computed(() => props.playList.episode);
+            //console.log('episodess => ', episodes.value.value.images[0]?.url);
+        } */
     });
 
     onMounted(() => {
@@ -37,7 +47,7 @@
 <style scoped lang="scss">
     .card {
         -webkit-box-flex: 1;
-        background: #181818;
+        background: var(--color-background-mute);
         border-radius: 0.5rem;
         -ms-flex: 1;
         flex: 1;

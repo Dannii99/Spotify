@@ -37,9 +37,11 @@ export class UserService {
     }
   }
 
-  async getCategories() {
+  async getCategories(country?:string, offset?:number, limit?:number) {
     try {
-        const response:any = await this.service.get('browse/categories');
+        const response:any = await this.service.get(((!!offset || offset == 0)  && !!limit && !!country) ? `browse/categories?locale=${country}&offset=${offset}&limit=${limit}` 
+        : (((!!offset || offset == 0) && !!limit) && !country) ? `browse/categories?offset=${offset}&limit=${limit}` 
+        : ((!offset && !limit) && !!country) ? `browse/categories?locale=${country}` : `browse/categories` );
         if(response) {
             //console.log('response: ', response);
             return response.categories;
@@ -88,7 +90,7 @@ export class UserService {
     }
   }
   
-  async getPlayListNews(country?:string, offset?:number, limit?:number, ) {
+  async getPlayListNews(country?:string, offset?:number, limit?:number) {
     try {
         const response:any = await this.service.get(((!!offset || offset == 0)  && !!limit && !!country) ? `browse/new-releases?country=${country}&limit=${limit}&offset=${offset}` 
         : ((!offset && !limit) && !!country) ? `browse/new-releases?country=${country}` : ((!!offset && !!limit) && !country) ? `browse/new-releases?limit=${limit}&offset=${offset}` 
@@ -102,7 +104,7 @@ export class UserService {
     }
   }
 
-  async getMyArtists(offset?:number, limit?:number, ) {
+  async getMyArtists(offset?:number, limit?:number) {
     try {
         const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/top/artists?limit=${limit}&offset=${offset}` : `me/top/artists`);
         if(response) {
@@ -137,7 +139,7 @@ export class UserService {
     }
   }
 
-  async getMyPlaylistsTop(offset?:number, limit?:number, ) {
+  async getMyPlaylistsTop(offset?:number, limit?:number) {
     try {
         const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/playlists?limit=${limit}&offset=${offset}` : `me/playlists`);
         if(response) {
@@ -148,9 +150,22 @@ export class UserService {
         console.error(error)
     }
   }
-  async getMy() {
+  async getAudiobooksUser(offset?:number, limit?:number) {
     try {
-        const response:any = await this.service.get('browse/tracks');
+        const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/audiobooks?limit=${limit}&offset=${offset}` : `me/audiobooks`);
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+  async getEpisodesUser(country?:string, offset?:number, limit?:number) {
+    try {
+      const response:any = await this.service.get(((!!offset || offset == 0)  && !!limit && !!country) ? `me/episodes?market=${country}&limit=${limit}&offset=${offset}` 
+      : ((!offset && !limit) && !!country) ? `me/episodes?market=${country}` : ((!!offset && !!limit) && !country) ? `me/episodes?limit=${limit}&offset=${offset}` 
+      : `me/episodes`);
         if(response) {
             //console.log('response: ', response);
             return response;

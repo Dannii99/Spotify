@@ -22,7 +22,7 @@
     border: none;
     &.btn-primary {
         background-color: var(--primary);
-        color: var(--white);
+        color: var(--color-text);
         transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1),background-color 100ms cubic-bezier(.694, 0, 0.335, 1),color 100ms cubic-bezier(.694, 0, 0.335, 1);
     }
     &.btn-effect {
