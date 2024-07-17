@@ -1,5 +1,5 @@
 <template>
-    <div sidebar class="grid grid-rows-[112px_minmax(calc(100vh-150px),_1fr)] gap-4 w-[72px]">
+    <div sidebar class="grid grid-rows-[112px_minmax(calc(100vh-150px),_1fr)] gap-4">
         <div class="home-link flex flex-col">
             <router-link to="/home" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'house']" class="text-xl"/>
@@ -58,10 +58,12 @@
 
 <style lang="scss" scoped>
     [sidebar] {
+        width: 4.5rem;
+        grid-template-rows: 7rem minmax(calc(100vh - 9.375rem), 1fr);
         .home-link {
             background-color: var(--color-background-soft);
-            padding: 8px 12px;
-            border-radius: 12px;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.75rem;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -69,7 +71,7 @@
         .library-link {
             background-color: var(--color-background-soft);
            /*  padding: 8px 12px; */
-            border-radius: 12px;
+            border-radius: 0.75rem;
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -79,7 +81,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 8px 12px;
+                padding: 0.5rem 0.75rem;
                 & .library-icon {
                     padding: 0.5rem;
                     color: var(--gray-500);
@@ -91,24 +93,24 @@
 
             & .group {
                 width: 100%;
-                padding: 8px 0 20px;
+                padding: 0.5rem 0 1.25rem;
                 overflow: hidden;
                 display: flex;
-                flex: 1 0 calc(100vh - 200px);
+                flex: 1 0 calc(100vh - 12.5rem);
                 & .list-group {
                     overflow:  hidden auto;
-                    padding: 0 12px;
+                    padding: 0 0.75rem;
                 }
             }
 
             .icon {
-                width: 48px;
-                height: 48px;
+                width: 3rem;
+                height: 3rem;
                 background-color: var(--black);
                 background-position: center;
                 background-size: cover;
                 &.artist {
-                    border-radius: 100px;
+                    border-radius: 6.25rem;
                 }
             }
         }

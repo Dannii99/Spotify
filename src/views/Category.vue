@@ -1,5 +1,5 @@
 <template>
-    <main class="w-full h-full bg-dark px-[20px] pt-[65px] pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
+    <main class="w-full h-full bg-dark px-5 pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
 
     </main>
 </template>
@@ -28,6 +28,6 @@
 
 <style lang="scss" scoped>     
     main {
-        height: calc(100vh - 16px);
+        height: calc(100vh - 1rem);
     }
 </style>

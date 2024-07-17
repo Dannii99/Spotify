@@ -45,7 +45,7 @@
         height: 100vh;
         .conten-spot {
             width: 100%;
-            max-width: 300px;
+            max-width: 18.75rem;
             display: flex;
             flex-direction: column;
             justify-content: center;

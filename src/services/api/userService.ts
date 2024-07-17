@@ -148,5 +148,16 @@ export class UserService {
         console.error(error)
     }
   }
+  async getMy() {
+    try {
+        const response:any = await this.service.get('browse/tracks');
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
     
 }

@@ -1,5 +1,5 @@
 <template>
-    <main class="w-full h-full bg-dark px-[20px] pt-[65px] pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
+    <main class="w-full h-full bg-dark px-5 pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
         <div class="banner absolute z-10 top-0 left-0 rounded-t-lg" :style="{ backgroundColor: colorRef }" />
         <div class="relative z-20">
             <h1 class="text-[32px] font-bold"> {{ welcome }} </h1>
@@ -56,11 +56,11 @@
     import Card from '@/components/Card.vue'
 
     // router
-    const router = useRouter();
+    // const router = useRouter();
 
     // llamar servicios
     const service = new UserService();
-    const auth = new AuthService();
+    // const auth = new AuthService();
 
     //variables almacenamiento
     let album: Ref<any> = ref({});
@@ -187,7 +187,7 @@
         height: calc(100vh - 16px);
     }
     .banner {
-        height: 332px;
+        height: 20.75rem;
         width: 100%;
         background-color: #535353;
         background-image: linear-gradient(#00000099 0,#121212 100%),var(--background-noise);
@@ -202,7 +202,7 @@
         & .link {
             color: var(--gray-500);
             white-space: nowrap;
-            font-size: 14px;
+            font-size: 0.875rem;
             text-decoration: none;
             &:hover {
                 text-decoration: underline;

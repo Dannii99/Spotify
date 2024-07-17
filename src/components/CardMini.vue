@@ -102,8 +102,8 @@
 <style scoped lang="scss">
     .card {
         width: 100%;
-        border-radius: 4px;
-        height: 70px;
+        border-radius: 0.25rem;
+        height: 4.375rem;
         background-color: hsl(0deg 0% 100% / 7%);
         display: flex;
         overflow: hidden;
@@ -111,8 +111,8 @@
             background: hsla(0,0%,100%,.2);
         }
         & .icon {
-            width: 70px;
-            height: 70px;
+            width: 4.375rem;
+            height: 4.375rem;
             background-color: var(--black);
             background-position: center;
         }
@@ -122,7 +122,7 @@
             align-items: center;
             padding: 0.5rem;
             flex: 1 0 auto;
-            width: calc(100% - 70px);
+            width: calc(100% - 4.375rem);
             & .text {
                 font-size: 0.875rem;
                 margin-bottom: 0;

@@ -60,13 +60,13 @@
         padding: 0.4rem 0.5rem 0.4rem 1rem;
         background-color: #0000008f;
         align-items: center;
-        border-radius: 100px;
+        border-radius: 6.25rem;
         cursor: pointer;
         & .user {
-            width: 35px;
-            height: 35px;
+            width: 2.1875rem;
+            height: 2.1875rem;
             background-color: black;
-            border-radius: 100px;
+            border-radius: 6.25rem;
             background-position: center;
         }
     }
@@ -76,10 +76,10 @@
         justify-content: center;
         align-items: center;
         & .navegate {
-            width: 47px;
-            height: 47px;
+            width: 2.9375rem;
+            height: 2.9375rem;
             background-color: #0000008f;
-            border-radius: 100px;
+            border-radius: 6.25rem;
             display: flex;
             justify-content: center;
             align-items: center;

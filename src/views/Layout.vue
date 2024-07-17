@@ -1,5 +1,5 @@
 <template>
-    <main class=" grid gap-4 p-2 grid-cols-custom">
+    <main main class="grid gap-4 p-2 grid-cols-custom">
       <Sidebar />
       <div class="relative">
         <Header :user="perfil" />
@@ -38,6 +38,6 @@
 
 <style scoped lang="scss">
  .grid-cols-custom {
-    grid-template-columns: 72px 1fr;
+    grid-template-columns: 4.5rem 1fr;
   }
 </style>
