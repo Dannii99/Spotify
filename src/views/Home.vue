@@ -72,6 +72,7 @@
 
 <script setup lang="ts">
     import { ref, onMounted, type Ref, inject, computed, onBeforeUpdate, provide, watchEffect, type ComputedRef, watch, nextTick, onBeforeUnmount } from 'vue'
+    import { useStore } from '@/store'
     import { UserService } from '../services/api/userService'
     import { AuthService } from '../services/auth/authService'
     import { useRoute, useRouter } from 'vue-router'
@@ -86,6 +87,9 @@
     // llamar servicios
     const service = new UserService();
     // const auth = new AuthService();
+
+    // store
+    const store = useStore();
 
     //variables almacenamiento
     let album: Ref<any> = ref({});

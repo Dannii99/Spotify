@@ -28,7 +28,6 @@
     import { AuthService } from '../services/auth/authService'
     import { useRoute, useRouter } from 'vue-router'
     import { addKeysToObject } from '.././utils/objectUtils';
-    import like from '@/assets/img/liked-songs-640.png'
     import Card from '@/components/Card.vue'
 
     // router
