@@ -1,6 +1,7 @@
 /* Set up using Vue 3 */
 import { createApp } from 'vue'
 import App from './App.vue'
+import { store, key } from './store'
 import router from './router/index'
 import './assets/main.scss'
 
@@ -34,6 +35,7 @@ const app = createApp(App);
 
 /* Asegurarse de usar la instancia del enrutador */
 app.use(router)
+app.use(store, key);
 
 
 /* agregar libreria fontAwesome al compoent */

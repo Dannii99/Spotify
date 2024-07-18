@@ -30,12 +30,12 @@
   }
   &::-webkit-scrollbar-thumb:hover {
     //background: hsla(0,0%,100%,.3);
-    background: hsla(0,0%,100%,.3);
+    background: var(--color-scrollbar);
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
     opacity: 1;
   }
   &::-webkit-scrollbar-thumb:active {
-    background: hsla(0,0%,100%,.3);
+    background: var(--color-scrollbar);
     opacity: 1;
   }
   &::-webkit-scrollbar-track {
@@ -54,7 +54,7 @@
   //transition: all 1s ease;
   padding-right: 0.75rem !important;
   &::-webkit-scrollbar-thumb {
-    background: hsla(0,0%,100%,.3);
+    background: var(--color-scrollbar);
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
     display: block;
     opacity: 1;

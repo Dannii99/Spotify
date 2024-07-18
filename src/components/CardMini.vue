@@ -3,7 +3,7 @@
         <!-- <div class="icon" :style="{ backgroundImage: 'url(' + album.value.album.images[2].url + ')' }" v-if="album.value"/> -->
         <img ref="image" :src="album.value.album.images[0].url" alt="Sample Image" crossorigin="anonymous" class="icon"   @load="handleLoad" />
         <div class="content">
-            <p class="text white">{{ album.value.album.name }}</p>
+            <p class="text color-title">{{ album.value.album.name }}</p>
         </div>
     </div>
     <!-- <div v-if="colorPalette">
@@ -104,11 +104,11 @@
         width: 100%;
         border-radius: 0.25rem;
         height: 4.375rem;
-        background-color: hsl(0deg 0% 100% / 7%);
+        background-color: var(--color-background-silent);
         display: flex;
         overflow: hidden;
         &:hover {
-            background: hsla(0,0%,100%,.2);
+            background: var(--color-background-silent-hover);
         }
         & .icon {
             width: 4.375rem;

@@ -5,7 +5,8 @@
     "vitest.config.*",
     "cypress.config.*",
     "nightwatch.conf.*",
-    "playwright.config.*"
+    "playwright.config.*",
+    "types/**/*.d.ts",
   ],
   "compilerOptions": {
     "target": "esnext",
@@ -15,7 +16,7 @@
     "strict": true,
     "jsx": "preserve",
     "esModuleInterop": true,
-    "types": ["node", "vite/client", "@types/node", "@types/vue"],
+    "types": ["node", "vite/client", "@types/node"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,

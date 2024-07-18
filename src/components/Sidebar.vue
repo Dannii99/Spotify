@@ -84,7 +84,7 @@
                 padding: 0.5rem 0.75rem;
                 & .library-icon {
                     padding: 0.5rem;
-                    color: var(--gray-500);
+                    color: var(--color-background-off);
                     &:hover,:focus {
                         color: var(--color-text);
                     }
@@ -115,7 +115,7 @@
             }
         }
         .nav-link {
-            color: var(--gray-500);
+            color: var(--color-background-off);
             &.router-link-active {
                 color: var(--color-text);
             }

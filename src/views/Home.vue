@@ -10,16 +10,20 @@
 
             <section class="recentPlaylits">
                 <div class="head-playlits">
-                    <h2 class="text-[24px] font-bold white">Escuchado recientemente</h2>
-                    <a href="#" class="link">Mostrar todos</a>
+                    <h2 class="text-2xl font-bold color-title">Escuchado recientemente</h2>
+                    <router-link :to="{ name: 'more' }">  <!--  params: { id: false } ...recent?.items -->
+                         <!-- <a href="#" class="link">Mostrar todos</a> -->
+                         Mostrar todos
+                    </router-link>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in recent?.items" :key="index" />
                 </div>
             </section>
-            <section class="popularPlaylits">
+
+            <!-- <section class="popularPlaylits">
                 <div class="head-playlits">
-                    <h2 class="text-[24px] font-bold white">En tendencia</h2>
+                    <h2 class="text-2xl font-bold color-title">En tendencia</h2>
                     <a href="#" class="link">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
@@ -28,7 +32,7 @@
             </section>
             <section class="popularPlaylits">
                 <div class="head-playlits">
-                    <h2 class="text-[24px] font-bold white">Novedades para ti</h2>
+                    <h2 class="text-2xl font-bold color-title">Novedades para ti</h2>
                     <a href="#" class="link">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
@@ -37,7 +41,7 @@
             </section>
             <section class="popularPlaylits">
                 <div class="head-playlits">
-                    <h2 class="text-[24px] font-bold white">Episodios</h2>
+                    <h2 class="text-2xl font-bold color-title">Episodios</h2>
                     <a href="#" class="link">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
@@ -46,7 +50,7 @@
             </section>
             <section class="popularPlaylits">
                 <div class="head-playlits">
-                    <h2 class="text-[24px] font-bold white">Explorar</h2>
+                    <h2 class="text-2xl font-bold color-title">Explorar</h2>
                     <a href="#" class="link">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
@@ -55,13 +59,13 @@
             </section>
             <section class="popularPlaylits">
                 <div class="head-playlits">
-                    <h2 class="text-[24px] font-bold white">Tus Artistas</h2>
+                    <h2 class="text-2xl font-bold color-title">Tus Artistas</h2>
                     <a href="#" class="link">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in  artist?.items" :key="index" />
                 </div>
-            </section>
+            </section> -->
         </div>
     </main>
 </template>
@@ -169,6 +173,7 @@
         category.value.items = addKeysToObject(category.value.items, 'type', 'category');
         episodes.value = await service.getEpisodesUser('ES', 0, parseInt(columnNew.value));
         
+        console.log('recent: ', recent.value);
         // console.log('artist: ', artist.value);
         // console.log('category: ', category.value);
         // console.log('episodes: ', episodes.value);
@@ -243,7 +248,7 @@
         justify-content: space-between;
         align-items: center;
         & .link {
-            color: var(--gray-500);
+            color: var(--color-background-off);
             white-space: nowrap;
             font-size: 0.875rem;
             text-decoration: none;

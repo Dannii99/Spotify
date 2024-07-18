@@ -5,10 +5,10 @@
             <div class="navegate navegate-next"><font-awesome-icon :icon="['fas', 'chevron-right']"/></div>
         </div>
         <div class="content-user" v-if="user" v-on:click="close">
-           <p class="white text-[18px] mb-0" >{{ user.value.display_name }}</p>
+           <p class="color-title text-lg mb-0" >{{ user.value.display_name }}</p>
            <div class="flex justify-center items-center user ms-3" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }"  v-if="user.value?.images" />
            <div class="flex justify-center items-center user ms-3" v-if="user.value?.images?.length == 0 ? true : false" >
-                <font-awesome-icon :icon="['fas', 'user']" class="text-[14px] white" /> 
+                <font-awesome-icon :icon="['fas', 'user']" class="text-sm color-title" /> 
             </div>
         </div>
     </header>
@@ -58,14 +58,14 @@
     .content-user {
         display: flex;
         padding: 0.4rem 0.5rem 0.4rem 1rem;
-        background-color: #0000008f;
+        background-color: var(--color-background-box);
         align-items: center;
         border-radius: 6.25rem;
         cursor: pointer;
         & .user {
             width: 2.1875rem;
             height: 2.1875rem;
-            background-color: black;
+            background-color: var(--color-text);
             border-radius: 6.25rem;
             background-position: center;
         }
@@ -78,7 +78,7 @@
         & .navegate {
             width: 2.9375rem;
             height: 2.9375rem;
-            background-color: #0000008f;
+            background-color: var(--color-background-box);
             border-radius: 6.25rem;
             display: flex;
             justify-content: center;

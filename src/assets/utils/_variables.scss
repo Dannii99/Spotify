@@ -1,13 +1,13 @@
 /*  variables  */
 :root {
-    // primary colors
+     // primary colors
     --primary: #1ed760;
     --secondary: #1cc959;
     --success: #168b3f;
     --info: #0d72ea;
     --warning: #ffa42b;
     --danger: #f15e6c;
-    --light: #f8f9fa;
+    --light: #e5e5e5;
     --dark: var(--gray-bolder);
   
   
@@ -29,32 +29,59 @@
     // gradiengt
     --gradiengt-dark: #00000099;
     --gradiengt-light: #ffffff99;
-
+    //--gradiengt-light: rgba(174, 209, 251, 0.6);
+    
     // gray opacity
+    --gray-600-opacity: rgba(255, 255, 255, 0.253);
+    --gray-700-opacity: #ffffff4d;
+    --gray-900-opacity: rgba(255, 255, 255, 0.07);
     --gray-bold-opacity: #d9d9d93d; 
+    --black-opacity: #0000008f;
+    --white-opacity: #ffffff8f;
+    
+    // gray hover
+    --gray-200-hover: #dadada;
+    --gray-600-hover: hsla(0, 0%, 100%, 0.342);
+    --gray-800-hover: #282828;
+    --gray-900-hover: hsla(0,0%,100%,.2);
 }
-  
+
 
 /* semantic color variables for this project */
 :root {
     --color-background: var(--white);
     --color-background-soft: var(--light);
-    --color-background-mute: var(--gray-bold-opacity);
+    --color-background-mute: var(--white);
+    --color-background-off: var(--gray-700);
+    --color-background-silent: var(--gray-600-opacity);
+    --color-background-box: var(--white-opacity);
     
+    --color-background-mute-hover: var(--gray-200-hover);
+    --color-background-silent-hover: var(--gray-600-hover);
+
     --color-border: var(--light);
     --color-border-hover: var(--gray-100);
     
     --color-text: var(--dark);
 
     --color-linear-gradient: var(--gradiengt-light);
+    --color-scrollbar: var(--gradiengt-dark);
+
+
 }
 
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     :root {
         --color-background: var( --black);
         --color-background-soft: var(--dark);
         --color-background-mute: var(--gray-bold);
+        --color-background-off: var(--gray-500);
+        --color-background-silent: var(--gray-900-opacity);
+        --color-background-box: var(--black-opacity);
+
+        --color-background-mute-hover: var(--gray-800-hover);
+        --color-background-silent-hover: var(--gray-900-hover);
         
         --color-border: var(--dark);
         --color-border-hover: var(--gray-700);
@@ -62,8 +89,10 @@
         --color-text: var(--white);
 
         --color-linear-gradient: var(--gradiengt-dark);
+        --color-scrollbar: var(--gray-700-opacity);
     }
-} */
+}
+
   
 
 :root {
