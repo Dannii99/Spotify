@@ -11,20 +11,20 @@
             <section class="recentPlaylits">
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">Escuchado recientemente</h2>
-                    <router-link :to="{ name: 'more' }">  <!--  params: { id: false } ...recent?.items -->
-                         <!-- <a href="#" class="link">Mostrar todos</a> -->
+                    <a href="#" class="link" @click.prevent="updateAndRedirect(service.getPlayListRecent(service?.IdUser, 0, 50), 'Escuchado recientemente')">Mostrar todos</a>
+                    <!-- <router-link :to="{ name: 'more' }" @click.native.prevent="updateAndRedirect(service.getPlayListRecent(service?.IdUser, 0, 50))">   params: { id: false } ...recent?.items
                          Mostrar todos
-                    </router-link>
+                    </router-link> -->
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in recent?.items" :key="index" />
                 </div>
             </section>
 
-            <!-- <section class="popularPlaylits">
+            <section class="popularPlaylits">
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">En tendencia</h2>
-                    <a href="#" class="link">Mostrar todos</a>
+                    <a href="#" class="link" @click.prevent="updateAndRedirect(service.getPlayListPopular(0, 50, 'CO'), 'En tendencia')">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in popular?.playlists?.items" :key="index" />
@@ -33,7 +33,7 @@
             <section class="popularPlaylits">
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">Novedades para ti</h2>
-                    <a href="#" class="link">Mostrar todos</a>
+                    <a href="#" class="link" @click.prevent="updateAndRedirect(service.getPlayListNews('CO', 0, 50), 'Novedades para ti')">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in news?.albums?.items" :key="index" />
@@ -42,7 +42,7 @@
             <section class="popularPlaylits">
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">Episodios</h2>
-                    <a href="#" class="link">Mostrar todos</a>
+                    <a href="#" class="link" @click.prevent="updateAndRedirect(service.getEpisodesUser('ES', 0, 50), 'Episodios')">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in episodes?.items" :key="index" />
@@ -51,7 +51,7 @@
             <section class="popularPlaylits">
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">Explorar</h2>
-                    <a href="#" class="link">Mostrar todos</a>
+                    <a href="#" class="link" @click.prevent="updateAndRedirect(service.getCategories('sv_CO', 0, 50), 'Explorar')">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in category?.items" :key="index" />
@@ -60,18 +60,18 @@
             <section class="popularPlaylits">
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">Tus Artistas</h2>
-                    <a href="#" class="link">Mostrar todos</a>
+                    <a href="#" class="link" @click.prevent="updateAndRedirect(service.getMyArtists(0, 50), 'Tus Artistas')">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
                     <Card :playList="item" v-for="(item, index) in  artist?.items" :key="index" />
                 </div>
-            </section> -->
+            </section>
         </div>
     </main>
 </template>
 
 <script setup lang="ts">
-    import { ref, onMounted, type Ref, inject, computed, onBeforeUpdate, provide, watchEffect, type ComputedRef, watch, nextTick, onBeforeUnmount } from 'vue'
+    import { ref, onMounted, type Ref, inject, computed, onBeforeUpdate, provide, watchEffect, type ComputedRef, watch, nextTick, onBeforeUnmount, onUnmounted } from 'vue'
     import { useStore } from '@/store'
     import { UserService } from '../services/api/userService'
     import { AuthService } from '../services/auth/authService'
@@ -82,14 +82,19 @@
     import Card from '@/components/Card.vue'
 
     // router
-    // const router = useRouter();
+    const router = useRouter();
 
     // llamar servicios
-    const service = new UserService();
+    const service:any = new UserService();
+
     // const auth = new AuthService();
 
     // store
     const store = useStore();
+
+    // controller
+    const controller = new AbortController()
+    const signal = controller.signal
 
     //variables almacenamiento
     let album: Ref<any> = ref({});
@@ -134,55 +139,68 @@
     
     // Media Query Screem
     const checkMediaQueries = async () => {
-        //columnActual.value = getComputedStyle(root).getPropertyValue('--column-count');
-        const mobileQuery = window.matchMedia('(max-width: 640px)');
-        const mobileXLQuery = window.matchMedia('(min-width: 640px) and (max-width: 768px)');
-        const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
-        const laptopQuery = window.matchMedia('(min-width: 1024px) and (max-width: 1280px)');
-        const desktopQuery = window.matchMedia('(min-width: 1280px)');
 
-        isMobile.value = mobileQuery.matches;
-        isMobileXL.value = mobileXLQuery.matches;
-        isTablet.value = tabletQuery.matches;
-        isLaptop.value = laptopQuery.matches;
-        isDesktop.value = desktopQuery.matches;
+        if (!controller.signal.aborted) {
 
-        if (isMobile.value) {
-            columnNew.value = parseInt(columnActual.value) - 2;
-            root.style.setProperty('--column-count', columnNew.toString());
-            artist.value = await service.getMyArtists(0, 8);
-        }else if(isMobileXL.value) {
-            columnNew.value =parseInt(columnActual.value) - 1;
-            root.style.setProperty('--column-count', columnNew.toString());
-            artist.value = await service.getMyArtists(0, 9);
-        } else if(isTablet.value) {
-            columnNew.value = parseInt(columnActual.value);
-            root.style.setProperty('--column-count', columnNew.toString());
-            artist.value = await service.getMyArtists(0, 12);
-        } else if (isLaptop.value) {
-            columnNew.value = parseInt(columnActual.value) + 1;
-            root.style.setProperty('--column-count', columnNew.toString());
-            artist.value = await service.getMyArtists(0, 15);
-        } else if (isDesktop.value) {
-            columnNew.value = parseInt(columnActual.value) + 3;
-            root.style.setProperty('--column-count', columnNew.toString());
-            artist.value = await service.getMyArtists();
+            //columnActual.value = getComputedStyle(root).getPropertyValue('--column-count');
+            const mobileQuery = window.matchMedia('(max-width: 640px)');
+            const mobileXLQuery = window.matchMedia('(min-width: 640px) and (max-width: 768px)');
+            const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
+            const laptopQuery = window.matchMedia('(min-width: 1024px) and (max-width: 1280px)');
+            const desktopQuery = window.matchMedia('(min-width: 1280px)');
+    
+            isMobile.value = mobileQuery.matches;
+            isMobileXL.value = mobileXLQuery.matches;
+            isTablet.value = tabletQuery.matches;
+            isLaptop.value = laptopQuery.matches;
+            isDesktop.value = desktopQuery.matches;
+    
+            if (isMobile.value) {
+                columnNew.value = parseInt(columnActual.value) - 2;
+                root.style.setProperty('--column-count', columnNew.toString());
+                artist.value = await service.getMyArtists(0, 8);
+            }else if(isMobileXL.value) {
+                columnNew.value =parseInt(columnActual.value) - 1;
+                root.style.setProperty('--column-count', columnNew.toString());
+                artist.value = await service.getMyArtists(0, 9);
+            } else if(isTablet.value) {
+                columnNew.value = parseInt(columnActual.value);
+                root.style.setProperty('--column-count', columnNew.toString());
+                artist.value = await service.getMyArtists(0, 12);
+            } else if (isLaptop.value) {
+                columnNew.value = parseInt(columnActual.value) + 1;
+                root.style.setProperty('--column-count', columnNew.toString());
+                artist.value = await service.getMyArtists(0, 15);
+            } else if (isDesktop.value) {
+                columnNew.value = parseInt(columnActual.value) + 3;
+                root.style.setProperty('--column-count', columnNew.toString());
+                artist.value = await service.getMyArtists();
+            }
+            //console.log('columnNew: ', columnNew.value);
+            // optener playlist polulares
+            popular.value = await service.getPlayListPopular(0, parseInt(columnNew.value), 'CO');
+            recent.value = await service.getPlayListRecent(service?.IdUser, 0, parseInt(columnNew.value));
+            news.value = await service.getPlayListNews('CO', 0, parseInt(columnNew.value));
+            category.value = await service.getCategories('sv_CO', 7, parseInt(columnNew.value));
+            category.value.items = addKeysToObject(category.value.items, 'type', 'category');
+            episodes.value = await service.getEpisodesUser('ES', 0, parseInt(columnNew.value));
+            
+            console.log('recent: ', recent.value);
+            // console.log('artist: ', artist.value);
+            // console.log('category: ', category.value);
+            // console.log('episodes: ', episodes.value);
+            
         }
-        //console.log('columnNew: ', columnNew.value);
-        // optener playlist polulares
-        popular.value = await service.getPlayListPopular(0, parseInt(columnNew.value), 'CO');
-        recent.value = await service.getPlayListRecent(service?.IdUser, 0, parseInt(columnNew.value));
-        news.value = await service.getPlayListNews('CO', 0, parseInt(columnNew.value));
-        category.value = await service.getCategories('sv_CO', 7, parseInt(columnNew.value));
-        category.value.items = addKeysToObject(category.value.items, 'type', 'category');
-        episodes.value = await service.getEpisodesUser('ES', 0, parseInt(columnNew.value));
-        
-        console.log('recent: ', recent.value);
-        // console.log('artist: ', artist.value);
-        // console.log('category: ', category.value);
-        // console.log('episodes: ', episodes.value);
-        
     };
+
+
+    const updateAndRedirect = async (category:any, title: string) => {
+      let newCategory = await category;
+      newCategory = [{'title': title, items: (!!newCategory?.playlists) ? [...newCategory.playlists?.items] : (!!newCategory?.albums) ? [...newCategory.albums?.items] : [...newCategory?.items]}]
+      console.log('newCategory: ', newCategory);
+      await store.dispatch('updateAlbums', newCategory)
+      router.push('/show-more') // Redirige a la nueva vista
+    }
 
   
 
@@ -219,13 +237,20 @@
         checkMediaQueries();
         window.addEventListener('resize', checkMediaQueries); 
 
-
+        
         // variable welcome define
         welcome.value = getGreeting();
         setInterval(() => {
             welcome.value = getGreeting();
         }, 60000); // Actualizar cada minuto
     });
+
+    
+    onUnmounted(() => {
+      // Clean up the service when the component is destroyed
+      // service.stop()
+      controller.abort();
+    })
 
 </script>
 

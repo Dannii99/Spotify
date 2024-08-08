@@ -6,7 +6,7 @@
             <img v-if="lista?.value?.icons" aria-hidden="false" draggable="false" loading="lazy" :src="lista?.value?.icons[0]?.url" data-testid="card-image" alt="image" class="img-card">
         </div>
         <div class="text-content">
-            <h4 class="text-base font-bold color-title pb-1 line-clamp-title">{{ !!lista.value.name ? lista.value.name : lista.value.episode.name }}</h4>
+            <h4 class="text-base font-bold color-title pb-1 line-clamp-title">{{ !!lista.value.name ? lista.value?.name : lista.value.episode?.name }}</h4>
             <p class="text-sm color-off-text line-clamp-text"  v-if="lista.value.description">{{ lista.value.description }}</p>
             <p class="text-sm color-off-text line-clamp-text" v-if="(!lista.value.description && lista.value.tracks)">{{ lista.value.tracks.total }} {{lista.value.tracks.total > 0 ? 'Canciones' : 'Cancion' }} </p>
             <p class="text-sm color-off-text line-clamp-text" v-if="(!lista.value.description && lista.value.total_tracks)">{{ lista.value.total_tracks }} {{lista.value.total_tracks > 0 ? 'Canciones' : 'Cancion' }}</p>
@@ -31,7 +31,7 @@
   
     watchEffect(() => {
         lista.value = computed(() => props.playList);
-        //console.log('playListss=> ', lista.value.value.episode.images[0]?.url );
+        //console.log('playListss=> ', lista.value);
         
         /* if (props.playList.episode) {
             episodes.value = computed(() => props.playList.episode);
