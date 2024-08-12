@@ -38,6 +38,7 @@
     --gray-bold-opacity: #d9d9d93d; 
     --black-opacity: #0000008f;
     --white-opacity: #ffffff8f;
+    --light-opacity: #ffffffb3;
     
     // gray hover
     --gray-200-hover: #dadada;
@@ -63,6 +64,7 @@
     --color-border-hover: var(--gray-100);
     
     --color-text: var(--dark);
+    --color-text-opacity: var(--black-opacity);
 
     --color-linear-gradient: var(--gradiengt-light);
     --color-scrollbar: var(--gradiengt-dark);
@@ -87,6 +89,7 @@
         --color-border-hover: var(--gray-700);
         
         --color-text: var(--white);
+        --color-text-opacity: var(--light-opacity);
 
         --color-linear-gradient: var(--gradiengt-dark);
         --color-scrollbar: var(--gray-700-opacity);

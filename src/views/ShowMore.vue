@@ -58,7 +58,7 @@
     
     onMounted(async () => {
         category.value = store.state.albums[0];
-        console.log('category: ',  category.value);
+        // console.log('category: ',  category.value);
          
     });
 
@@ -72,14 +72,6 @@
     
     main {
         height: calc(100vh - 16px);
-    }
-    .banner {
-        height: 20.75rem;
-        width: 100%;
-        background-color: #535353;
-        background-image: linear-gradient(var(--color-linear-gradient) 0,var(--color-background-soft) 100%),var(--background-noise);
-        -webkit-transition: background 1s ease;
-        transition: background 1s ease;
     }
 
     .head-playlits {

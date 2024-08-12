@@ -27,7 +27,7 @@
     watchEffect(() => {
         user.value = computed(() => props.user);
         if (user.value.value.images) {
-                console.log('s: ', user.value.value.images.length);
+                // console.log('s: ', user.value.value.images.length);
                 
         }
     })

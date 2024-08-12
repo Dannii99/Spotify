@@ -6,6 +6,7 @@ import Layout from '../views/Layout.vue';
 import Home from '../views/Home.vue';
 import Category from '../views/Category.vue';
 import ShowMore from '../views/ShowMore.vue';
+import PlayList from '../views/PalyList.vue';
 import Login from '../views/Login.vue';
 import Callback from '../views/Callback.vue';
 
@@ -40,6 +41,13 @@ const routes = [
         path: '/show-more',
         name: 'more',
         component: ShowMore,
+        meta: { requiresAuth: true }, // Agrega la propiedad requiresAuth a meta
+        /* props: (route: { params: { items: any; }; }) => ({ items: route.params.items }), */
+      },
+      {
+        path: '/play-list/:playlist_id',
+        name: 'list',
+        component: PlayList,
         meta: { requiresAuth: true }, // Agrega la propiedad requiresAuth a meta
         /* props: (route: { params: { items: any; }; }) => ({ items: route.params.items }), */
       },

@@ -33,6 +33,7 @@
 
     onMounted(async () => {
         localStorage.clear();
+        sessionStorage.clear();
     });
 
 </script>

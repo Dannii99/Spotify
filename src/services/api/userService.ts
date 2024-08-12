@@ -25,9 +25,9 @@ export class UserService {
     }
   }
 
-  async getProfile() {
+  async getProfile(profile:any) {
     try {
-      const response:any = await this.service.get('users/42i8j3qaf2slm77b3r5wudsdl');
+      const response:any = await this.service.get(`users/${profile}`);
       if(response) {
           //console.log('response: ', response);
           return response;
@@ -127,6 +127,19 @@ export class UserService {
         console.error(error)
     }
   }
+
+  async getPlaylists(playlist_id:string | string[]) {
+    try {
+        const response:any = await this.service.get(`playlists/${playlist_id}`);
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
   async getMyPlaylists(offset?:number, limit?:number, ) {
     try {
         const response:any = await this.service.get(((!!offset || offset == 0) && !!limit) ? `me/tracks?limit=${limit}&offset=${offset}` : `me/tracks`);

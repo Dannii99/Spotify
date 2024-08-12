@@ -27,7 +27,9 @@
                     <a href="#" class="link" @click.prevent="updateAndRedirect(service.getPlayListPopular(0, 50, 'CO'), 'En tendencia')">Mostrar todos</a>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
-                    <Card :playList="item" v-for="(item, index) in popular?.playlists?.items" :key="index" />
+                    <router-link :to="{ name: 'list', params: { playlist_id: item?.id } }" v-for="(item, index) in popular?.playlists?.items">
+                        <Card :playList="item" :key="index" />
+                    </router-link>
                 </div>
             </section>
             <section class="popularPlaylits">
@@ -185,7 +187,8 @@
             category.value.items = addKeysToObject(category.value.items, 'type', 'category');
             episodes.value = await service.getEpisodesUser('ES', 0, parseInt(columnNew.value));
             
-            console.log('recent: ', recent.value);
+            // console.log('popular: ', popular.value);
+            // console.log('recent: ', recent.value);
             // console.log('artist: ', artist.value);
             // console.log('category: ', category.value);
             // console.log('episodes: ', episodes.value);
@@ -197,7 +200,7 @@
     const updateAndRedirect = async (category:any, title: string) => {
       let newCategory = await category;
       newCategory = [{'title': title, items: (!!newCategory?.playlists) ? [...newCategory.playlists?.items] : (!!newCategory?.albums) ? [...newCategory.albums?.items] : [...newCategory?.items]}]
-      console.log('newCategory: ', newCategory);
+      // console.log('newCategory: ', newCategory);
       await store.dispatch('updateAlbums', newCategory)
       router.push('/show-more') // Redirige a la nueva vista
     }
@@ -261,13 +264,13 @@
     }
     
     main {
-        height: calc(100vh - 16px);
+        height: calc(100vh - 1rem);
     }
     .banner {
         height: 20.75rem;
         width: 100%;
-        background-color: #535353;
-        background-image: linear-gradient(var(--color-linear-gradient) 0,var(--color-background-soft) 100%),var(--background-noise);
+        background-color: var(--gray-700);
+        background-image: linear-gradient(var(--color-linear-gradient) 0,var(--color-background-soft) 100%), url('../assets/img/bg-transparente.svg');
         -webkit-transition: background 1s ease;
         transition: background 1s ease;
     }
