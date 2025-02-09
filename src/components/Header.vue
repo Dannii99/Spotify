@@ -6,7 +6,7 @@
         </div>
         <div class="content-user" v-if="user" v-on:click="close">
            <p class="color-title text-lg mb-0" >{{ user.value.display_name }}</p>
-           <div class="flex justify-center items-center user ms-3" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }"  v-if="user.value?.images" />
+           <div class="flex justify-center items-center user ms-3 bg-cover bg-no-repeat" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }"  v-if="user.value?.images" />
            <div class="flex justify-center items-center user ms-3" v-if="user.value?.images?.length == 0 ? true : false" >
                 <font-awesome-icon :icon="['fas', 'user']" class="text-sm color-title" /> 
             </div>

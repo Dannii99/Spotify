@@ -1,5 +1,5 @@
 <template >
-    <div class="card">
+    <div class="card" v-if="!skeleton">
         <div class="imagen-content mb-3" :class="{'artist': lista?.value?.type == 'artist'}">
             <img v-if="lista?.value?.images" aria-hidden="false" draggable="false" loading="lazy" :src="lista?.value?.images[0]?.url" data-testid="card-image" alt="image" class="img-card">
             <img v-if="lista?.value?.episode?.images" aria-hidden="false" draggable="false" loading="lazy" :src="lista.value.episode.images[0]?.url" data-testid="card-image" alt="image" class="img-card">
@@ -15,6 +15,14 @@
             <p class="text-sm color-off-text line-clamp-text" v-if="(lista.value.episode?.type == 'episode')">{{ lista.value.episode?.show.name }}</p>
         </div>
     </div>
+
+
+    <div class="card animate-pulse" v-else>
+        <div class="imagen-content skeleton mb-3">
+            <div class="img-card"/>
+        </div>
+        <div class="text-content"></div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -22,7 +30,8 @@
 
      // variable para pasar info
      const props = defineProps<{
-        playList?:any
+        playList?:any,
+        skeleton?:boolean
     }>()
 
     // variable almacenamiento
@@ -70,6 +79,9 @@
             position: relative;
             width: 100%;
             overflow: hidden;
+            &.skeleton {
+                background-color: #4343438c;
+            }
             &.artist {
                 border-radius: 6.25rem;
             }

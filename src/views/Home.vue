@@ -16,12 +16,20 @@
                          Mostrar todos
                     </router-link> -->
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
-                    <Card :playList="item" v-for="(item, index) in recent?.items" :key="index" />
+
+                <div v-if="Object.keys(recent).length > 0">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :playList="item" v-for="(item, index) in recent?.items" :key="index" />
+                    </div>
+                </div>
+                <div v-else>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :skeleton="true" v-for="(item, index) in ArraySkel" :key="index" />
+                    </div>
                 </div>
             </section>
-
-            <section class="popularPlaylits">
+            
+           <!--  <section class="popularPlaylits"> // OBSOLETO
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">En tendencia</h2>
                     <a href="#" class="link" @click.prevent="updateAndRedirect(service.getPlayListPopular(0, 50, 'CO'), 'En tendencia')">Mostrar todos</a>
@@ -31,14 +39,22 @@
                         <Card :playList="item" :key="index" />
                     </router-link>
                 </div>
-            </section>
+            </section> -->
+
             <section class="popularPlaylits">
                 <div class="head-playlits">
                     <h2 class="text-2xl font-bold color-title">Novedades para ti</h2>
                     <a href="#" class="link" @click.prevent="updateAndRedirect(service.getPlayListNews('CO', 0, 50), 'Novedades para ti')">Mostrar todos</a>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
-                    <Card :playList="item" v-for="(item, index) in news?.albums?.items" :key="index" />
+                <div v-if="Object.keys(news).length > 0">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :playList="item" v-for="(item, index) in news?.albums?.items" :key="index" />
+                    </div>
+                </div>
+                <div v-else>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :skeleton="true" v-for="(item, index) in ArraySkel" :key="index" />
+                    </div>
                 </div>
             </section>
             <section class="popularPlaylits">
@@ -46,8 +62,15 @@
                     <h2 class="text-2xl font-bold color-title">Episodios</h2>
                     <a href="#" class="link" @click.prevent="updateAndRedirect(service.getEpisodesUser('ES', 0, 50), 'Episodios')">Mostrar todos</a>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
-                    <Card :playList="item" v-for="(item, index) in episodes?.items" :key="index" />
+                <div v-if="Object.keys(episodes).length > 0">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :playList="item" v-for="(item, index) in episodes?.items" :key="index" />
+                    </div>
+                </div>
+                <div v-else>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :skeleton="true" v-for="(item, index) in ArraySkel" :key="index" />
+                    </div>
                 </div>
             </section>
             <section class="popularPlaylits">
@@ -55,8 +78,15 @@
                     <h2 class="text-2xl font-bold color-title">Explorar</h2>
                     <a href="#" class="link" @click.prevent="updateAndRedirect(service.getCategories('sv_CO', 0, 50), 'Explorar')">Mostrar todos</a>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
-                    <Card :playList="item" v-for="(item, index) in category?.items" :key="index" />
+                <div v-if="Object.keys(category).length > 0">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :playList="item" v-for="(item, index) in category?.items" :key="index" />
+                    </div>
+                </div>
+                <div v-else>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :skeleton="true" v-for="(item, index) in ArraySkel" :key="index" />
+                    </div>
                 </div>
             </section>
             <section class="popularPlaylits">
@@ -64,8 +94,15 @@
                     <h2 class="text-2xl font-bold color-title">Tus Artistas</h2>
                     <a href="#" class="link" @click.prevent="updateAndRedirect(service.getMyArtists(0, 50), 'Tus Artistas')">Mostrar todos</a>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
-                    <Card :playList="item" v-for="(item, index) in  artist?.items" :key="index" />
+                <div v-if="Object.keys(artist).length > 0">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :playList="item" v-for="(item, index) in  artist?.items" :key="index" />
+                    </div>
+                </div>
+                <div v-else>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
+                        <Card :skeleton="true" v-for="(item, index) in ArraySkel" :key="index" />
+                    </div>
                 </div>
             </section>
         </div>
@@ -82,6 +119,7 @@
     import like from '@/assets/img/liked-songs-640.png'
     import CardMini from '@/components/CardMini.vue'
     import Card from '@/components/Card.vue'
+    import debounce from 'lodash/debounce';
 
     // router
     const router = useRouter();
@@ -104,9 +142,15 @@
     let tracks: Ref<any> = ref({});
     let recent: Ref<any> = ref({});
     let news: Ref<any> = ref({});
-    let artist: Ref<any | null> = ref(null);
+    let artist: Ref<any> = ref({});
     let category: Ref<any> = ref({});
     let episodes: Ref<any> = ref({});
+
+     console.log('recent.value:: ', recent.value);
+    
+    
+    let ArraySkel: Ref<any> = ref(0);
+
 
     // valirable para el saludo al home
     let welcome: Ref<string> = ref('');
@@ -127,74 +171,78 @@
     const columnActual: Ref<any> = ref('4'); 
     const columnNew: Ref<any> = ref('');
 
-    // screem Movil
-    const isMobile: Ref<boolean> = ref(false);
-
-    // screem Movil XL
-    const isMobileXL: Ref<boolean> = ref(false);
-    // screem tablet
-    const isTablet: Ref<boolean> = ref(false);
-    // screem tablet
-    const isLaptop: Ref<boolean> = ref(false);
-    // screem desktop
-    const isDesktop: Ref<boolean> = ref(false);
+    // Guarda el último rango detectado
+    const lastRange = ref('');
     
     // Media Query Screem
-    const checkMediaQueries = async () => {
+    const checkMediaQueries = debounce(async () => {
 
         if (!controller.signal.aborted) {
 
-            //columnActual.value = getComputedStyle(root).getPropertyValue('--column-count');
-            const mobileQuery = window.matchMedia('(max-width: 640px)');
-            const mobileXLQuery = window.matchMedia('(min-width: 640px) and (max-width: 768px)');
-            const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
-            const laptopQuery = window.matchMedia('(min-width: 1024px) and (max-width: 1280px)');
-            const desktopQuery = window.matchMedia('(min-width: 1280px)');
-    
-            isMobile.value = mobileQuery.matches;
-            isMobileXL.value = mobileXLQuery.matches;
-            isTablet.value = tabletQuery.matches;
-            isLaptop.value = laptopQuery.matches;
-            isDesktop.value = desktopQuery.matches;
-    
-            if (isMobile.value) {
-                columnNew.value = parseInt(columnActual.value) - 2;
-                root.style.setProperty('--column-count', columnNew.toString());
-                artist.value = await service.getMyArtists(0, 8);
-            }else if(isMobileXL.value) {
-                columnNew.value =parseInt(columnActual.value) - 1;
-                root.style.setProperty('--column-count', columnNew.toString());
-                artist.value = await service.getMyArtists(0, 9);
-            } else if(isTablet.value) {
-                columnNew.value = parseInt(columnActual.value);
-                root.style.setProperty('--column-count', columnNew.toString());
-                artist.value = await service.getMyArtists(0, 12);
-            } else if (isLaptop.value) {
-                columnNew.value = parseInt(columnActual.value) + 1;
-                root.style.setProperty('--column-count', columnNew.toString());
-                artist.value = await service.getMyArtists(0, 15);
-            } else if (isDesktop.value) {
-                columnNew.value = parseInt(columnActual.value) + 3;
-                root.style.setProperty('--column-count', columnNew.toString());
-                artist.value = await service.getMyArtists();
+            let newRange = '';
+            if (window.matchMedia('(max-width: 639px)').matches) {
+            newRange = 'mobile';
+            } else if (window.matchMedia('(min-width: 639px) and (max-width: 767px)').matches) {
+            newRange = 'mobileXL';
+            } else if (window.matchMedia('(min-width: 767px) and (max-width: 1023px)').matches) {
+            newRange = 'tablet';
+            } else if (window.matchMedia('(min-width: 1023px) and (max-width: 1279px)').matches) {
+            newRange = 'laptop';
+            } else {
+            newRange = 'desktop';
             }
-            //console.log('columnNew: ', columnNew.value);
-            // optener playlist polulares
-            popular.value = await service.getPlayListPopular(0, parseInt(columnNew.value), 'CO');
-            recent.value = await service.getPlayListRecent(service?.IdUser, 0, parseInt(columnNew.value));
-            news.value = await service.getPlayListNews('CO', 0, parseInt(columnNew.value));
-            category.value = await service.getCategories('sv_CO', 7, parseInt(columnNew.value));
-            category.value.items = addKeysToObject(category.value.items, 'type', 'category');
-            episodes.value = await service.getEpisodesUser('ES', 0, parseInt(columnNew.value));
-            
-            // console.log('popular: ', popular.value);
-            // console.log('recent: ', recent.value);
-            // console.log('artist: ', artist.value);
-            // console.log('category: ', category.value);
-            // console.log('episodes: ', episodes.value);
-            
+
+            if (newRange !== lastRange.value) {
+                if (newRange == 'mobile') {
+                    columnNew.value = parseInt(columnActual.value) - 2;
+                }else if (newRange == 'mobileXL') {
+                    columnNew.value = parseInt(columnActual.value) - 1;
+                }else if (newRange == 'tablet') {
+                    columnNew.value = parseInt(columnActual.value);
+                }else if (newRange == 'laptop') {
+                    columnNew.value = parseInt(columnActual.value) + 1;
+                }else if (newRange == 'desktop') {
+                    columnNew.value = parseInt(columnActual.value) + 3;
+                }
+                root.style.setProperty('--column-count', columnNew.value.toString());
+                generateArray(columnNew.value);
+                
+                [artist, recent, news, category, episodes].forEach(refVar => refVar.value = {});
+                
+                lastRange.value = newRange;
+                await fetchData(newRange); // Solo llama a la API si el rango ha cambiado
+            }
         }
+    }, 300);
+
+    const fetchData = async (range:string) => {
+        //console.log(`Fetching data for ${range}`);
+        switch (range) {
+            case 'mobile':
+            artist.value = await service.getMyArtists(0, 8);
+            break;
+            case 'mobileXL':
+            artist.value = await service.getMyArtists(0, 9);
+            break;
+            case 'tablet':
+            artist.value = await service.getMyArtists(0, 12);
+            break;
+            case 'laptop':
+            artist.value = await service.getMyArtists(0, 15);
+            break;
+            case 'desktop':
+            artist.value = await service.getMyArtists();
+            break;
+        }
+        
+        //popular.value = await service.getPlayListPopular(0, parseInt(columnNew.value), 'CO');
+        recent.value = await service.getPlayListRecent(service?.IdUser, 0, parseInt(columnNew.value));
+        news.value = await service.getPlayListNews('CO', 0, parseInt(columnNew.value));
+        category.value = await service.getCategories('sv_CO', 7, parseInt(columnNew.value));
+        category.value.items = addKeysToObject(category.value.items, 'type', 'category');
+        episodes.value = await service.getEpisodesUser('ES', 3, parseInt(columnNew.value));
     };
+
 
 
     const updateAndRedirect = async (category:any, title: string) => {
@@ -218,11 +266,20 @@
         }
     }
 
+    // contador de cartas a mostrar
+    const generateArray = (column: number): any => {
+        ArraySkel.value = Array.from({ length: column }, (_, i) => i + 1);
+        //console.log('ArraySkel.value:": ",', ArraySkel.value);   
+    }
+
     onBeforeUnmount(() => {
         checkMediaQueries();
     });
     
     onMounted(async () => {
+
+        window.addEventListener('resize', checkMediaQueries); 
+
         // const category = await service.getCategories()
         await nextTick();
         // optener ultimos albunes escuchados del usuario
@@ -233,12 +290,9 @@
             return  b.album.total_tracks -  a.album.total_tracks;
         });
         
-        // console.log('album: ', album.value);
-        // console.log('artist: ', artist.value);
         
         // resize screem
         checkMediaQueries();
-        window.addEventListener('resize', checkMediaQueries); 
 
         
         // variable welcome define
@@ -252,13 +306,13 @@
     onUnmounted(() => {
       // Clean up the service when the component is destroyed
       // service.stop()
+      window.removeEventListener('resize', checkMediaQueries); 
       controller.abort();
     })
 
 </script>
 
 <style lang="scss" scoped>
-    
     div {
       color: var(--column-count);
     }

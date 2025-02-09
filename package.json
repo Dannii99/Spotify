@@ -15,6 +15,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/vue-fontawesome": "^3.0.5",
+    "lodash": "^4.17.21",
     "node-vibrant": "^3.2.1-alpha.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
+    "@types/lodash": "^4.17.15",
     "@types/node": "^18.18.5",
     "@types/vue": "^2.0.0",
     "@vitejs/plugin-vue": "^4.4.0",
