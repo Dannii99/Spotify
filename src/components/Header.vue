@@ -4,11 +4,18 @@
             <div class="navegate navegate-back me-2"><font-awesome-icon :icon="['fas', 'chevron-left']"/></div>
             <div class="navegate navegate-next"><font-awesome-icon :icon="['fas', 'chevron-right']"/></div>
         </div>
-        <div class="content-user" v-if="user" v-on:click="close">
+
+        <div class="content-user" v-if="Object.keys(user).length > 0 " v-on:click="close">
            <p class="color-title text-lg mb-0" >{{ user.value.display_name }}</p>
            <div class="flex justify-center items-center user ms-3 bg-cover bg-no-repeat" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }"  v-if="user.value?.images" />
            <div class="flex justify-center items-center user ms-3" v-if="user.value?.images?.length == 0 ? true : false" >
                 <font-awesome-icon :icon="['fas', 'user']" class="text-sm color-title" /> 
+            </div>
+        </div>
+        <div class="content-user" v-else>
+            <p class="bg-user text-lg mb-0 animate-pulse w-[7rem] h-[0.9375rem] rounded-2xl"></p>
+           <div class="flex justify-center items-center user ms-3 bg-user animate-pulse" >
+                <font-awesome-icon :icon="['fas', 'user']" class="text-sm color-title flex" /> 
             </div>
         </div>
     </header>
@@ -19,16 +26,15 @@
     import { ref, onMounted, watch, type Ref, computed, watchEffect } from 'vue';
 
     const props = defineProps<{
-        user?: any
+        user?: object
     }>()
     
-    let user: Ref<any | null> = ref(null); //computed(() => props.user)
+    let user: Ref = ref({}); //computed(() => props.user)
         
+    console.log('s: ', user.value);  
     watchEffect(() => {
         user.value = computed(() => props.user);
         if (user.value.value.images) {
-                // console.log('s: ', user.value.value.images.length);
-                
         }
     })
 
@@ -68,6 +74,9 @@
             background-color: var(--color-text);
             border-radius: 6.25rem;
             background-position: center;
+        }
+        & .bg-user {
+            background-color: #4343438c;
         }
     }
 

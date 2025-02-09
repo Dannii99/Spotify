@@ -3,8 +3,15 @@
         <div class="banner absolute z-10 top-0 left-0 rounded-t-lg" :style="{ backgroundColor: colorRef }" />
         <div class="relative z-20">
             <h1 class="text-[32px] font-bold"> {{ welcome }} </h1>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 mb-8" >
-                <CardMini :album="item" :hoverColor="UpdateHoverColor" v-for="(item, index) in album.items" :key="index" /><!--  @hover-cambio="manejarHover" -->
+            <div v-if="Object.keys(album).length > 0">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 mb-8" >
+                    <CardMini :album="item" :hoverColor="UpdateHoverColor" v-for="(item, index) in album.items" :key="index" /><!--  @hover-cambio="manejarHover" -->
+                </div>
+            </div>
+            <div v-else>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 mb-8" >
+                    <CardMini :skeleton="true" v-for="(item, index) in [1,2,3,4,5,6]" :key="index" />
+                </div>
             </div>
 
 
@@ -149,7 +156,7 @@
      console.log('recent.value:: ', recent.value);
     
     
-    let ArraySkel: Ref<any> = ref(0);
+    let ArraySkel: Ref<any> = ref([1,2,3,4,5,6,7]);
 
 
     // valirable para el saludo al home

@@ -15,8 +15,15 @@
             </div>
             <div class="group" v-if="album">
                 <div class="list-group scroll-custom">
-                    <div class="grid grid-cols-1 gap-3"> <!-- :style="{ backgroundImage: 'url(' +  item?.album?.images[2].url + ')'}"  v-for="(item, index) in tabs" :key="index" -->
-                        <div class="icon cursor-pointer" :class="{'artist': (item?.type == 'artist') }" :style="{ backgroundImage: 'url(' +  ((item?.album) ?  item?.album?.images[0]?.url : item?.images[0]?.url) + ')'}"  v-for="(item, index) in tabs" :key="index" />
+                    <div v-if="tabs.length > 0">
+                        <div class="grid grid-cols-1 gap-3"> <!-- :style="{ backgroundImage: 'url(' +  item?.album?.images[2].url + ')'}"  v-for="(item, index) in tabs" :key="index" -->
+                            <div class="icon cursor-pointer" :class="{'artist': (item?.type == 'artist') }" :style="{ backgroundImage: 'url(' +  ((item?.album) ?  item?.album?.images[0]?.url : item?.images[0]?.url) + ')'}"  v-for="(item, index) in tabs" :key="index" />
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="icon cursor-pointer animate-pulse" v-for="(item, index) in skeleton" :key="index" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,6 +44,7 @@
     let artist: Ref<any | null> = ref(null);
     let playLists: Ref<any | null> = ref(null);
     let tabs: Ref<Array<any>> = ref([]);
+    let skeleton: Ref<Array<any>> = ref([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,10]);
 
     onMounted(async () => {
         album.value = await service.getAlbum();
@@ -106,7 +114,8 @@
             .icon {
                 width: 3rem;
                 height: 3rem;
-                background-color: var(--black);
+                //background-color: var(--black);
+                background-color: #4343438c;
                 background-position: center;
                 background-size: cover;
                 &.artist {

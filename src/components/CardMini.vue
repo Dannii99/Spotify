@@ -1,10 +1,14 @@
 <template>
-    <div class="card cursor-pointer"  @mouseover="handleMouseOver" @mouseleave="ResetMouseOver" >
+    <div class="card cursor-pointer"  @mouseover="handleMouseOver" @mouseleave="ResetMouseOver" v-if="!skeleton">
         <!-- <div class="icon" :style="{ backgroundImage: 'url(' + album.value.album.images[2].url + ')' }" v-if="album.value"/> -->
         <img ref="image" :src="album.value.album.images[0].url" alt="Sample Image" crossorigin="anonymous" class="icon" @load="handleLoad" />
         <div class="content">
             <p class="text color-title">{{ album.value.album.name }}</p>
         </div>
+    </div>
+
+    <div class="card cursor-pointer animate-pulse" v-else>
+        <div class="content" />
     </div>
     <!-- <div v-if="colorPalette">
         <div v-for="(color, index) in colorPalette" :key="index" :style="{ backgroundColor: color }">
@@ -23,6 +27,7 @@
     const props = defineProps<{
         album?: any,
         hoverColor?: any,
+        skeleton?: boolean
     }>()
 
     // variable almacenamiento
