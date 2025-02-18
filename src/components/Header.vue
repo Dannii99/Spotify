@@ -31,7 +31,6 @@
     
     let user: Ref = ref({}); //computed(() => props.user)
         
-    console.log('s: ', user.value);  
     watchEffect(() => {
         user.value = computed(() => props.user);
         if (user.value.value.images) {

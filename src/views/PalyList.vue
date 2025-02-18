@@ -1,7 +1,7 @@
 <template>
-    <main class="w-full h-full bg-dark px-5 pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
+    <main class="w-full h-full bg-dark pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
         <div class="banner absolute z-10 top-0 left-0 rounded-t-lg" :style="{ backgroundColor: colorRef }" /><!--  :style="{ backgroundColor: colorRef }" -->
-        <section class="relative z-20 pt-6">
+        <section class="relative z-20 pt-6 px-5 mb-[2em]">
             <div class="grid gap-4 sm:gap-6 grid-cols-7">
                 <div class="portada col-span-2">
                     <img v-if="playList?.images?.length" :src="playList?.images[0]?.url" crossorigin="anonymous" alt="image" class="img mt-auto" @load="handleLoad">
@@ -18,6 +18,139 @@
                         </p>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section class="pt-4 px-5 pb-[5rem] relative z-30">
+            <div class="absolute top-0 left-0 w-full bg-[linear-gradient(180deg,_#0000000d_70%,_#121212_100%)] bg-[#0000000d] backdrop-blur-md z-10" />
+            
+            <div class="flex items-center relative z-20">
+                <div class="rounded-full size-[4rem] bg-primary flex items-center justify-center cursor-pointer">
+                    <font-awesome-icon :icon="['fas', 'play']" class="text-[1.125rem] dark" /> 
+                </div>
+                <font-awesome-icon :icon="['fas', 'circle-plus']" class="text-3xl gray-500 ms-6 cursor-pointer" /> 
+                <font-awesome-icon :icon="['fas', 'circle-arrow-down']" class="text-3xl gray-500 ms-6 cursor-pointer" /> 
+                <font-awesome-icon :icon="['fas', 'ellipsis']" class="text-3xl gray-500 ms-6 cursor-pointer" /> 
+            </div>
+
+            <div class="overflow-x-auto relative z-20 pt-6">
+                <table class="w-full text-left text-white">
+                    <thead>
+                    <tr class="border-b border-white/20 text-[1.125rem]">
+                        <th class="px-4 py-2">#</th>
+                        <th class="px-4 py-2">Título</th>
+                        <th class="px-4 py-2">Álbum</th>
+                        <th class="px-4 py-2">Fecha en la que se añadió</th>
+                        <th class="px-4 py-2">Duración</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-[1.125rem]">
+                        <tr>
+                            <td class="px-4 py-2">1</td>
+                            <td class="px-4 py-2">Bad Memories (feat. Elley Duhé & FAST BOY)</td>
+                            <td class="px-4 py-2">Bad Memories</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:28</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">2</td>
+                            <td class="px-4 py-2">Night of Our Lives</td>
+                            <td class="px-4 py-2">Night of Our Lives</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:25</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">3</td>
+                            <td class="px-4 py-2">Euphoria (with Alok)</td>
+                            <td class="px-4 py-2">Euphoria</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:31</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">4</td>
+                            <td class="px-4 py-2">Burn</td>
+                            <td class="px-4 py-2">Burn</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:38</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">5</td>
+                            <td class="px-4 py-2">Better Off (Alone, Pt. III)</td>
+                            <td class="px-4 py-2">Walkerworld</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:31</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">1</td>
+                            <td class="px-4 py-2">Bad Memories (feat. Elley Duhé & FAST BOY)</td>
+                            <td class="px-4 py-2">Bad Memories</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:28</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">2</td>
+                            <td class="px-4 py-2">Night of Our Lives</td>
+                            <td class="px-4 py-2">Night of Our Lives</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:25</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">3</td>
+                            <td class="px-4 py-2">Euphoria (with Alok)</td>
+                            <td class="px-4 py-2">Euphoria</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:31</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">4</td>
+                            <td class="px-4 py-2">Burn</td>
+                            <td class="px-4 py-2">Burn</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:38</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">5</td>
+                            <td class="px-4 py-2">Better Off (Alone, Pt. III)</td>
+                            <td class="px-4 py-2">Walkerworld</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:31</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">1</td>
+                            <td class="px-4 py-2">Bad Memories (feat. Elley Duhé & FAST BOY)</td>
+                            <td class="px-4 py-2">Bad Memories</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:28</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">2</td>
+                            <td class="px-4 py-2">Night of Our Lives</td>
+                            <td class="px-4 py-2">Night of Our Lives</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:25</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">3</td>
+                            <td class="px-4 py-2">Euphoria (with Alok)</td>
+                            <td class="px-4 py-2">Euphoria</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:31</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">4</td>
+                            <td class="px-4 py-2">Burn</td>
+                            <td class="px-4 py-2">Burn</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:38</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">5</td>
+                            <td class="px-4 py-2">Better Off (Alone, Pt. III)</td>
+                            <td class="px-4 py-2">Walkerworld</td>
+                            <td class="px-4 py-2">hace 5 días</td>
+                            <td class="px-4 py-2">2:31</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
     </main>
@@ -109,7 +242,7 @@
                 myProfile.value = await service.getProfileMy();
 
                 // Consumir el servicio getProfile usando el id del propietario de la playlist
-                console.log('playList.value?.owner?.id: ', playList.value?.owner?.id);
+                console.log('playList.value: ', playList.value);
                 
                 getProfileDiferent.value = await service.getProfile(playList.value?.owner?.id);
             } catch (error) {
@@ -128,9 +261,10 @@
 <style lang="scss" scoped>     
     main {
         height: calc(100vh - 1rem);
+        font-size: clamp(10px, 28px, 2vw);
     }
     .banner {
-        height: 35rem;
+        height: 32em;
         width: 100%;
         background-color: var(--gray-700);
         background-image: linear-gradient(var(--color-linear-gradient) 0,var(--color-background-soft) 100%), url('../assets/img/bg-transparente.svg');
@@ -146,6 +280,7 @@
             padding-bottom: 100%;
             position: relative;
             width: 100%;
+            height: 10em;
             overflow: hidden;
             & .img {
                 width: 100%;

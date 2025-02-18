@@ -6,7 +6,7 @@
                     <h2 class="text-2xl font-bold color-title">{{ category.title }}</h2>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pt-2 mb-8" >
-                    <Card :playList="item" v-for="(item, index) in category.items" :key="index" />
+                    <Card :playList="item" v-for="(item, index) in category.items" :key="index"  @click.prevent="redirect(item.id)" />
                 </div>
             </section>
 
@@ -52,13 +52,17 @@
     // Accede al elemento root del documento
     const root = document.documentElement;
 
+    const redirect = async (id: number) => {
+      router.push(`/play-list/${id}`) // Redirige a la nueva vista
+    }
+
     onBeforeUnmount(() => {
     
     });
     
     onMounted(async () => {
         category.value = store.state.albums[0];
-        // console.log('category: ',  category.value);
+        console.log('category: ',  category.value);
          
     });
 
