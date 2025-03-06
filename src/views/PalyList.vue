@@ -1,5 +1,5 @@
 <template>
-    <main class="w-full h-full bg-dark pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
+    <main class="w-full h-full bg-dark px-5 pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
         <div class="banner absolute z-10 top-0 left-0 rounded-t-lg" :style="{ backgroundColor: colorRef }" /><!--  :style="{ backgroundColor: colorRef }" -->
         <section class="relative z-20 pt-6 px-5 mb-[2em]">
             <div class="grid gap-4 sm:gap-6 grid-cols-7">
@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-start-3 col-end-8 content-end">
                     <p class="text-xs sm:text-base color-title-opacity mb-3">Lista</p>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold color-title mb-2">{{playList.name}}</h1>
+                    <h1 class="text-xl sm:text-4xl md:text-5xl lg:text-7xl font-bold color-title mb-2">{{playList.name}}</h1>
                     <p v-if="playList?.images" class="text-xs sm:text-base color-title-opacity">{{ playList?.description }}</p>
                     <div class="flex w-full items-center">
                         <img v-if="playList?.images?.length" aria-hidden="false" draggable="false" :src="getProfileDiferent?.images[0]?.url" alt="image perfil" class="w-5 h-5 rounded-full mr-1 mb-auto">
@@ -35,119 +35,33 @@
             <div class="overflow-x-auto relative z-20 pt-6">
                 <table class="w-full text-left text-white">
                     <thead>
-                    <tr class="border-b border-white/20 text-[1.125rem]">
-                        <th class="px-4 py-2">#</th>
+                    <tr class="border-b border-white/20 text-base">
+                        <th class="px-4 py-2 hidden sm:table-cell w-[1%]">#</th>
                         <th class="px-4 py-2">Título</th>
-                        <th class="px-4 py-2">Álbum</th>
-                        <th class="px-4 py-2">Fecha en la que se añadió</th>
-                        <th class="px-4 py-2">Duración</th>
+                        <th class="px-4 py-2 hidden lg:table-cell">Álbum</th>
+                        <th class="px-4 py-2 hidden xl:table-cell">Fecha en la que se añadió</th>
+                        <th class="px-4 py-2"><font-awesome-icon :icon="['fas', 'clock']" class="color-title" /> </th>
                     </tr>
                     </thead>
-                    <tbody class="text-[1.125rem]">
-                        <tr>
-                            <td class="px-4 py-2">1</td>
-                            <td class="px-4 py-2">Bad Memories (feat. Elley Duhé & FAST BOY)</td>
-                            <td class="px-4 py-2">Bad Memories</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:28</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">2</td>
-                            <td class="px-4 py-2">Night of Our Lives</td>
-                            <td class="px-4 py-2">Night of Our Lives</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:25</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">3</td>
-                            <td class="px-4 py-2">Euphoria (with Alok)</td>
-                            <td class="px-4 py-2">Euphoria</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:31</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">4</td>
-                            <td class="px-4 py-2">Burn</td>
-                            <td class="px-4 py-2">Burn</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:38</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">5</td>
-                            <td class="px-4 py-2">Better Off (Alone, Pt. III)</td>
-                            <td class="px-4 py-2">Walkerworld</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:31</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">1</td>
-                            <td class="px-4 py-2">Bad Memories (feat. Elley Duhé & FAST BOY)</td>
-                            <td class="px-4 py-2">Bad Memories</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:28</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">2</td>
-                            <td class="px-4 py-2">Night of Our Lives</td>
-                            <td class="px-4 py-2">Night of Our Lives</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:25</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">3</td>
-                            <td class="px-4 py-2">Euphoria (with Alok)</td>
-                            <td class="px-4 py-2">Euphoria</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:31</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">4</td>
-                            <td class="px-4 py-2">Burn</td>
-                            <td class="px-4 py-2">Burn</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:38</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">5</td>
-                            <td class="px-4 py-2">Better Off (Alone, Pt. III)</td>
-                            <td class="px-4 py-2">Walkerworld</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:31</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">1</td>
-                            <td class="px-4 py-2">Bad Memories (feat. Elley Duhé & FAST BOY)</td>
-                            <td class="px-4 py-2">Bad Memories</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:28</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">2</td>
-                            <td class="px-4 py-2">Night of Our Lives</td>
-                            <td class="px-4 py-2">Night of Our Lives</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:25</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">3</td>
-                            <td class="px-4 py-2">Euphoria (with Alok)</td>
-                            <td class="px-4 py-2">Euphoria</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:31</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">4</td>
-                            <td class="px-4 py-2">Burn</td>
-                            <td class="px-4 py-2">Burn</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:38</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2">5</td>
-                            <td class="px-4 py-2">Better Off (Alone, Pt. III)</td>
-                            <td class="px-4 py-2">Walkerworld</td>
-                            <td class="px-4 py-2">hace 5 días</td>
-                            <td class="px-4 py-2">2:31</td>
+                    <tbody class="text-base">
+                        <tr v-for="(item, index) in playList?.tracks?.items" :key="index">
+                            <td class="px-4 py-2 hidden sm:table-cell">{{ index + 1 }}</td>
+                            <td class="px-4 py-2">
+                                <div class="flex items-center">
+                                    <img aria-hidden="false" draggable="false" :src="item.track.album?.images[0]?.url" :alt="item.track.album.name" class="w-[2.5rem] h-[2.5rem] me-2">
+                                    <div>
+                                        <p class="truncate max-w-[6.875rem] sm:max-w-[9.375rem] md:max-w-[18.75rem]">{{ item.track.name }}</p>
+                                        <p class="text-sm gray-600 flex truncate max-w-[6.875rem] sm:max-w-[9.375rem] md:max-w-[18.75rem]">
+                                            {{ getArrArtist(item.track.album?.artists) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-2 hidden lg:table-cell">
+                                <p class="truncate max-w-[6.875rem] sm:max-w-[9.375rem] md:max-w-[18.75rem] text-sm gray-600"> {{ item.track.album.name }}</p>
+                            </td>
+                            <td class="px-4 py-2 truncate hidden xl:table-cell text-sm gray-600">{{ item.track.album.release_date }}</td>
+                            <td class="px-4 py-2 truncate text-sm gray-600">{{ formattedTime(item.track.duration_ms) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -184,7 +98,7 @@
     const handleLoad = (event: Event) => {
         const image = event.target as HTMLImageElement;
         imageRef.value = image;
-        console.log('imageRef: ', imageRef.value);
+        //console.log('imageRef: ', imageRef.value);
         
         //color portada
         getColorPalette(imageRef.value);
@@ -208,7 +122,7 @@
         const colors = calculateDominantColors(imageData, 5); // You can adjust the number of colors
 
          colorPalette.value = colors.map(color => `rgb(${color[0]}, ${color[1]}, ${color[2]})`);
-         console.log('colorPalette: ', colorPalette.value);
+         //console.log('colorPalette: ', colorPalette.value);
          
          UpdateColor(colorPalette.value[0])
          //enviarPropPadre(colorPalette.value[0])
@@ -228,6 +142,18 @@
         return colors;
     };
 
+    const formattedTime = (ms:number) => {
+        const totalSeconds = Math.floor(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    const getArrArtist = (value:Array<any>) => {
+        const artist = value.map(obj => obj.name).join(", ");
+        return artist
+    };
+
     
     onMounted(async () => {
         // console.log('route: ', route);
@@ -242,7 +168,7 @@
                 myProfile.value = await service.getProfileMy();
 
                 // Consumir el servicio getProfile usando el id del propietario de la playlist
-                console.log('playList.value: ', playList.value);
+                console.log('playList.value: ', playList.value.tracks.items);
                 
                 getProfileDiferent.value = await service.getProfile(playList.value?.owner?.id);
             } catch (error) {
@@ -280,7 +206,7 @@
             padding-bottom: 100%;
             position: relative;
             width: 100%;
-            height: 10em;
+            height: 4em;
             overflow: hidden;
             & .img {
                 width: 100%;

@@ -12,7 +12,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faHouse, faXmark, faMagnifyingGlass, faBookmark, faChevronLeft, faChevronRight, faUser, faPlay, faEllipsis, faCirclePlus, faCircleArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faXmark, faMagnifyingGlass, faBookmark, faChevronLeft, faChevronRight, faUser, faPlay, faEllipsis, faCirclePlus, faCircleArrowDown, faClock } from '@fortawesome/free-solid-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 
 
@@ -28,7 +28,8 @@ const Icons = {
     faPlay,
     faEllipsis,
     faCirclePlus,
-    faCircleArrowDown
+    faCircleArrowDown,
+    faClock
 }
 
 /* add icons to the library */

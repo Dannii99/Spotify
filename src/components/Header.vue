@@ -1,14 +1,14 @@
 <template>
-    <header>
+    <header class="gap-2">
         <div class="history">
             <div class="navegate navegate-back me-2"><font-awesome-icon :icon="['fas', 'chevron-left']"/></div>
             <div class="navegate navegate-next"><font-awesome-icon :icon="['fas', 'chevron-right']"/></div>
         </div>
 
-        <div class="content-user" v-if="Object.keys(user).length > 0 " v-on:click="close">
-           <p class="color-title text-lg mb-0" >{{ user.value.display_name }}</p>
-           <div class="flex justify-center items-center user ms-3 bg-cover bg-no-repeat" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }"  v-if="user.value?.images" />
-           <div class="flex justify-center items-center user ms-3" v-if="user.value?.images?.length == 0 ? true : false" >
+        <div class="content-user py-[0.4rem] px-[0.4rem] sm:ps-3 max-w-[12rem]" v-if="Object.keys(user).length > 0 " v-on:click="close">
+           <p class="color-title truncate flex-1 text-sm md:text-base lg:text-lg mb-0 hidden sm:inline" >{{ user.value.display_name }}</p>
+           <div class="flex justify-center items-center user sm:ms-3 bg-cover bg-no-repeat" :style="{ backgroundImage: 'url(' + user.value.images[0].url + ')' }"  v-if="user.value?.images" />
+           <div class="flex justify-center items-center user sm:ms-3" v-if="user.value?.images?.length == 0 ? true : false" >
                 <font-awesome-icon :icon="['fas', 'user']" class="text-sm color-title" /> 
             </div>
         </div>
@@ -62,7 +62,7 @@
     }
     .content-user {
         display: flex;
-        padding: 0.4rem 0.5rem 0.4rem 1rem;
+        //padding: 0.4rem 0.5rem 0.4rem 1rem;
         background-color: var(--color-background-box);
         align-items: center;
         border-radius: 6.25rem;
