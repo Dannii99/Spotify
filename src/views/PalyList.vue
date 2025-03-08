@@ -1,14 +1,16 @@
 <template>
-    <main class="w-full h-full bg-dark px-5 pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom">
+    <main class="main w-full h-full bg-dark px-5 pt-16 pb-5 rounded-lg relative z-20 overflow-auto scroll-custom content-size">
         <div class="banner absolute z-10 top-0 left-0 rounded-t-lg" :style="{ backgroundColor: colorRef }" /><!--  :style="{ backgroundColor: colorRef }" -->
-        <section class="relative z-20 pt-6 px-5 mb-[2em]">
-            <div class="grid gap-4 sm:gap-6 grid-cols-7">
-                <div class="portada col-span-2">
+        <section class="relative z-20 pt-6 sm:px-5 mb-[2em]">
+
+
+            <div class="grid gap-4 sm:gap-6 grid-cols-12">
+                <div class="portada aspect-square col-span-3 lg:col-span-2">
                     <img v-if="playList?.images?.length" :src="playList?.images[0]?.url" crossorigin="anonymous" alt="image" class="img mt-auto" @load="handleLoad">
                 </div>
-                <div class="col-start-3 col-end-8 content-end">
+                <div class="col-span-9 lg:col-span-10 content-end">
                     <p class="text-xs sm:text-base color-title-opacity mb-3">Lista</p>
-                    <h1 class="text-xl sm:text-4xl md:text-5xl lg:text-7xl font-bold color-title mb-2">{{playList.name}}</h1>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-bold color-title mb-2">{{playList.name}}</h1>
                     <p v-if="playList?.images" class="text-xs sm:text-base color-title-opacity">{{ playList?.description }}</p>
                     <div class="flex w-full items-center">
                         <img v-if="playList?.images?.length" aria-hidden="false" draggable="false" :src="getProfileDiferent?.images[0]?.url" alt="image perfil" class="w-5 h-5 rounded-full mr-1 mb-auto">
@@ -19,8 +21,9 @@
                     </div>
                 </div>
             </div>
+            
         </section>
-        <section class="pt-4 px-5 pb-[5rem] relative z-30">
+        <section class="pt-4 sm:px-5 pb-[5rem] relative z-30">
             <div class="absolute top-0 left-0 w-full bg-[linear-gradient(180deg,_#0000000d_70%,_#121212_100%)] bg-[#0000000d] backdrop-blur-md z-10" />
             
             <div class="flex items-center relative z-20">
@@ -186,7 +189,6 @@
 
 <style lang="scss" scoped>     
     main {
-        height: calc(100vh - 1rem);
         font-size: clamp(10px, 28px, 2vw);
     }
     .banner {
@@ -203,10 +205,11 @@
             border-radius: 0.375rem;
             -webkit-box-shadow: 0 8px 24px rgba(0,0,0,.5);
             box-shadow: 0 8px 24px rgba(0,0,0,.5);
-            padding-bottom: 100%;
+            // padding-bottom: 100%;
             position: relative;
             width: 100%;
-            height: 4em;
+            max-width: 10em;
+            height: 10em;
             overflow: hidden;
             & .img {
                 width: 100%;

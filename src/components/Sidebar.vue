@@ -67,7 +67,7 @@
 <style lang="scss" scoped>
     [sidebar] {
         width: 4.5rem;
-        grid-template-rows: 7rem minmax(calc(100vh - 9.375rem), 1fr);
+        grid-template-rows: 7rem minmax(calc(100vh - 16.375rem), 1fr);
         .home-link {
             background-color: var(--color-background-soft);
             padding: 0.5rem 0.75rem;
@@ -104,7 +104,7 @@
                 padding: 0.5rem 0 1.25rem;
                 overflow: hidden;
                 display: flex;
-                flex: 1 0 calc(100vh - 12.5rem);
+                flex: 1 0 calc(100vh - 19.5rem);
                 & .list-group {
                     overflow:  hidden auto;
                     padding: 0 0.75rem;

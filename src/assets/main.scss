@@ -87,6 +87,11 @@ body {
 }
 
 
+.main {
+  height: calc(100vh - 8rem);
+  flex: 1 0 auto;
+}
+
 
 /* Media query para pantallas pequeñas (hasta 640px) */
 @media (max-width: 640px) {
