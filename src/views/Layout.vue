@@ -17,17 +17,61 @@
   import { UserService } from '../services/api/userService'
   import { ref, onMounted, watch, type Ref, toRefs } from 'vue';
   import { useRoute } from 'vue-router';
+  import { useStore } from '@/store'
+  import { useSpotifyPlayer } from '@/utils/loadSpotifySdk'
 
   // llamar servicios
   const service = new UserService();
+
+  // llamar el SDK
+  const { loadSpotifySdk, getDeviceID } = useSpotifyPlayer()
     
   // Acceder a la ruta (URL) actual
   const route = useRoute();
   const currentPath = ref(window.location.pathname);
   let perfil: Ref<any> = ref({});
+  let player: Ref<any> = ref({});
+  let state: Ref<any> = ref({});
+  let deviceId: Ref<string> = ref('');
+  let token = ref<string | null>(null)
+
+  // store
+  const store = useStore();
   
+
   onMounted(async () => {
+    token.value = localStorage.getItem('access_token') || '';
+    console.log('token:::: ', token.value);
+    if (token.value) {
+      await loadSpotifySdk(token.value)
+    } else {
+      console.warn('Token no disponible')
+    }
+
+    perfil.value = await service.getProfileMy();
+    state.value = await service.getCurrentlyPlaying();
+    const devices = await service.getMyDevices();
+    const getDeviceId = getDeviceID();
+
+    const matchedDevice = devices.devices.find((item:any) => item.id === getDeviceId);
+    console.log('devices::::: ', devices);
+    console.log('getDeviceId::::: ', getDeviceId);
+    console.log('matchedDevice::::: ', matchedDevice.id);
+    
+    await store.dispatch('updateDevice', matchedDevice.id);
+   /*  
+      
+
       perfil.value = await service.getProfileMy();
+      player.value = await service.putCurrentlyPlaying(devices.devices[0].id);
+      state.value = await service.getPlayerState();
+
+      */
+
+      /* console.log('player: ', player);
+      console.log('state: ', state); */
+      
+      
   });
   
   // Escuchar cambios en la ruta utilizando watch

@@ -7,10 +7,9 @@ export class AuthService {
     private redirect_uri = import.meta.env.VITE_REDIRECT_URI;
 
 
-    private scope = 'user-read-private user-read-email user-library-read user-top-read playlist-read-private ugc-image-upload user-modify-playback-state app-remote-control';
+    private scope = 'user-read-private user-read-email user-library-read user-top-read playlist-read-private streaming ugc-image-upload user-modify-playback-state app-remote-control user-read-playback-state user-read-currently-playing';
     private codeVerifier  = this.generateRandomString(64);
    
-
     constructor() { }
 
     getClientId() {

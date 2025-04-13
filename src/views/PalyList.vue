@@ -50,7 +50,7 @@
                         <tr v-for="(item, index) in playList?.tracks?.items" :key="index">
                             <td class="px-4 py-2 hidden sm:table-cell">{{ index + 1 }}</td>
                             <td class="px-4 py-2">
-                                <div class="flex items-center">
+                                <div class="flex items-center cursor-pointer" v-on:click="playerMusic(item.track.id)">
                                     <img aria-hidden="false" draggable="false" :src="item.track.album?.images[0]?.url" :alt="item.track.album.name" class="w-[2.5rem] h-[2.5rem] me-2">
                                     <div>
                                         <p class="truncate max-w-[6.875rem] sm:max-w-[9.375rem] md:max-w-[18.75rem]">{{ item.track.name }}</p>
@@ -78,6 +78,7 @@
     import { UserService } from '../services/api/userService'
     import { useRoute, useRouter } from 'vue-router'
     import { formatCurrency } from '@/utils/currency'
+    import { useStore } from '@/store'
 
     // router
     const router = useRouter();
@@ -90,7 +91,10 @@
     let playList: Ref<any> = ref({});
     let myProfile: Ref<any> = ref({});
     let getProfileDiferent: Ref<any> = ref({});
-    
+    let start: Ref<any> = ref({});
+
+    // store
+    const store = useStore();
 
     // Propiedad que recibirá del hijo
     const colorRef:Ref< string | ComputedRef<any> | any > = ref('');
@@ -155,6 +159,27 @@
     const getArrArtist = (value:Array<any>) => {
         const artist = value.map(obj => obj.name).join(", ");
         return artist
+    };
+
+
+    const playerMusic = async (track_id:string) => {
+        console.log('track_id:: ', track_id);
+        // const devices = await service.getMyDevices(); 
+        const devices = store.state.device;
+        console.log('devices:: ', devices);
+        //store.dispatch('updateDevice', devices);
+        const body = {
+        "uris": [
+            `spotify:track:${track_id}`,
+        ],
+        "offset": {
+            "position": 0
+        },
+        "position_ms": 0
+        }
+        start.value = await service.putStartPlayback(devices, body);
+        console.log('start:: ', start);
+        
     };
 
     

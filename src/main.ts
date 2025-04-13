@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHouse, faXmark, faMagnifyingGlass, faBookmark, faChevronLeft, faChevronRight, faUser, faPlay, faEllipsis, faCirclePlus, faCircleArrowDown, faClock } from '@fortawesome/free-solid-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 
+import { createPinia } from 'pinia'
+
 
 const Icons = {
     faHouse,
@@ -41,7 +43,7 @@ const app = createApp(App);
 /* Asegurarse de usar la instancia del enrutador */
 app.use(router)
 app.use(store, key);
-
+app.use(createPinia())
 
 /* agregar libreria fontAwesome al compoent */
 app.component('font-awesome-icon', FontAwesomeIcon)

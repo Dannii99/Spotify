@@ -187,5 +187,59 @@ export class UserService {
         console.error(error)
     }
   }
+
+  async putCurrentlyPlaying(device_id: string) {
+    try {
+      const response:any = await this.service.put( `me/player`, {
+        "device_ids": [device_id],
+        "play": true
+      });
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  async getCurrentlyPlaying() {
+    try {
+      const response:any = await this.service.get( `me/player/currently-playing`);
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  async putStartPlayback(devices_id: string, track: any) {
+    try {
+        const response:any = await this.service.put((!devices_id) ? `me/player/play` : `me/player/play?device_id=${devices_id}`, track);
+        
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  async getMyDevices() {
+    try {
+      const response:any = await this.service.get( `me/player/devices`);
+        if(response) {
+            //console.log('response: ', response);
+            return response;
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+
     
 }
